@@ -1,21 +1,24 @@
 {
   description = "My personal NUR repository";
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-  outputs = { self, nixpkgs }:
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgsOld.url = "github:NixOS/nixpkgs/nixos-20.09";
+  };
+  outputs = { self, nixpkgs, nixpkgsOld }:
     let
-      systems = [
-        "x86_64-linux"
-        "i686-linux"
-        "x86_64-darwin"
-        "aarch64-linux"
-        "armv6l-linux"
-        "armv7l-linux"
-      ];
-      forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f system);
+      # List of systems supported by home-manager binary
+      supportedSystems = nixpkgs.lib.platforms.unix;
+
+      # Function to generate a set based on supported systems
+      forAllSystems = f:
+        nixpkgs.lib.genAttrs supportedSystems (system: f system);
     in
     {
       packages = forAllSystems (system: import ./default.nix {
-        pkgs = import nixpkgs { inherit system; };
+        pkgs = import nixpkgsOld {
+          inherit system;
+          config.allowUnfree = true;
+        };
       });
     };
 }
