@@ -1,5 +1,3 @@
 {
-  # Add your NixOS modules here
-  #
-  # my-module = ./my-module;
+  pritunl-client-service = ./pritunl-client-service.nix;
 }
