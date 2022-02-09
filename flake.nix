@@ -13,12 +13,22 @@
       forAllSystems = f:
         nixpkgs.lib.genAttrs supportedSystems (system: f system);
     in
-    {
-      packages = forAllSystems (system: import ./default.nix {
-        pkgs = import nixpkgsOld {
-          inherit system;
-          config.allowUnfree = true;
-        };
-      });
+    rec {
+      packages = forAllSystems (system:
+        import ./default.nix {
+          pkgs = import nixpkgsOld {
+            inherit system;
+            config.allowUnfree = true;
+          };
+        }
+      );
+
+      # overlays = [
+      #   (final: prev: {
+      #     pritunl-client = packages.x86_64-linux.pritunl-client;
+      #   })
+      # ];
+
+      nixosModules = import ./modules;
     };
 }
