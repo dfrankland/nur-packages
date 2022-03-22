@@ -31,6 +31,6 @@ stdenv.mkDerivation {
     description = "Trunk all-in-one tool for scalably checking, testing, merging, and monitoring code";
     homepage = "https://trunk.io";
     license = licenses.unfree;
-    platforms = [ "x86_64-linux" "x86_64-darwin" ];
+    platforms = lib.platforms.unix;
   };
 }
