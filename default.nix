@@ -9,5 +9,6 @@
   google-chrome = pkgs.callPackage ./pkgs/google-chrome { };
   qmk_toolbox = pkgs.callPackage ./pkgs/qmk_toolbox { };
   rectangle = pkgs.callPackage ./pkgs/rectangle { };
+  signal-desktop = pkgs.callPackage ./pkgs/signal-desktop { };
   trunk = pkgs.callPackage ./pkgs/trunk { };
 }
