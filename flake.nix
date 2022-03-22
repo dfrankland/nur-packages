@@ -2,9 +2,8 @@
   description = "My personal NUR repository";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgsOld.url = "github:NixOS/nixpkgs/nixos-20.09";
   };
-  outputs = { self, nixpkgs, nixpkgsOld }:
+  outputs = { self, nixpkgs }:
     let
       # List of systems supported by home-manager binary
       supportedSystems = nixpkgs.lib.platforms.unix;
@@ -15,7 +14,7 @@
     in
     {
       packages = forAllSystems (system: import ./default.nix {
-        pkgs = import nixpkgsOld {
+        pkgs = import nixpkgs {
           inherit system;
           config.allowUnfree = true;
         };
