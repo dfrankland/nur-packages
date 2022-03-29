@@ -6,14 +6,16 @@ else
   let
     app = "zoom.us.app";
     version = "5.10.0.5714";
+    arch = if (stdenv.hostPlatform.isAarch64) then "arm64/" else "";
+    sha256 = if (stdenv.hostPlatform.isAarch64) then "sha256-MOdKdEAg+/bNmgXXWxSSjIc64oKcpv3cpFoegydGZDQ=" else "sha256-p/oKPaDHMvnxWnzTJQnC6jPP0edvFjelMfLOQGj9ZIA=";
   in
   stdenv.mkDerivation {
     pname = "zoom-us";
     inherit version;
 
     src = fetchurl {
-      url = "https://cdn.zoom.us/prod/5.10.0.5714/Zoom.pkg";
-      sha256 = "sha256-p/oKPaDHMvnxWnzTJQnC6jPP0edvFjelMfLOQGj9ZIA=";
+      url = "https://cdn.zoom.us/prod/5.10.0.5714/${arch}Zoom.pkg";
+      inherit sha256;
     };
 
     nativeBuildInputs = [ xar cpio pbzx gzip ];

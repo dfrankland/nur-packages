@@ -7,9 +7,8 @@ else
     app = "GitHub Desktop.app";
     version = "2.9.11";
     versionCommit = "${version}-93911c1f";
-    isArm = with stdenv.hostPlatform; isAarch64 || isAarch32;
-    cpu = if (isArm) then "arm64" else "x64";
-    sha256 = if (isArm) then "sha256-NWXkEI06mzsVLXosJ9eeowDYpthvExgc7qaAdMZMRqk=" else "sha256-fn6eIzjrxKXos68wwKUkjw6mQDZKm/ZbuPKNicnEXVA=";
+    cpu = if (stdenv.hostPlatform.isAarch64) then "arm64" else "x64";
+    sha256 = if (stdenv.hostPlatform.isAarch64) then "sha256-NWXkEI06mzsVLXosJ9eeowDYpthvExgc7qaAdMZMRqk=" else "sha256-fn6eIzjrxKXos68wwKUkjw6mQDZKm/ZbuPKNicnEXVA=";
   in
   stdenv.mkDerivation rec {
     pname = "github-desktop";
