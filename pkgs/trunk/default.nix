@@ -4,9 +4,9 @@ with lib;
 
 let
   # get the lastest version from https://trunk.io/releases/latest
-  version = "0.8.1-beta";
+  version = "0.9.3-beta";
   platform = if (stdenv.isDarwin) then "darwin" else "linux";
-  sha256 = if (stdenv.isDarwin) then "sha256-sjB4dCUYFNbLwXtOWq0O8yRsPNxPk5w7pt6FWJpsXg4=" else "6f4ce9ea0d0f249536fda82f94304e1642cf0637709acba6cdab26ca36253140";
+  sha256 = if (stdenv.isDarwin) then "901c831fd96b6027f3ab885fd1b355bba3452238ed46d517a920ddffa7bf974c" else "ad798e7ef97260678070e6a0b9e9298e81968cc45de685632668a6b143a2322f";
 in
 stdenv.mkDerivation {
   pname = "trunk";
