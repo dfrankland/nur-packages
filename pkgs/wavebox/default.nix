@@ -5,7 +5,7 @@ if (!stdenv.isDarwin) then
 else
   let
     app = "Wavebox.app";
-    version = "10.98.9.2";
+    version = "10.102.21.2";
   in
   stdenv.mkDerivation {
     pname = "wavebox";
@@ -14,7 +14,7 @@ else
     src = fetchurl {
       name = "wavebox-${version}.dmg";
       url = "https://download.wavebox.app/stable/macuniversal/Install%20Wavebox%20${version}.dmg";
-      sha256 = "sha256-eKO8iaTTftMDnXMAHS3EwW7M2bdO/DjSn5ZZ+OQBnro=";
+      sha256 = "sha256-t34Hux6wrQ0gMXYpQJkqmgphcxBMPxeoJFPtUrvG1NI=";
     };
 
     sourceRoot = app;
