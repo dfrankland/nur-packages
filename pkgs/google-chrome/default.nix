@@ -12,7 +12,7 @@ else
 
     src = fetchurl {
       url = "https://dl.google.com/chrome/mac/universal/stable/GGRO/googlechrome.dmg";
-      sha256 = "sha256-DEUdlR0NdO2+RzS84M/ZFKmiu/JIJwblZnrxrkDTMIE=";
+      sha256 = "sha256-XLyQlzTSFx4vh2/dqw3j+L7XG7Vrha1n0SD93uVRzVI=";
     };
 
     sourceRoot = app;
