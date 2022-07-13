@@ -29,8 +29,8 @@ python3Packages.buildPythonApplication rec {
   src = fetchFromGitHub {
     owner = "localstack";
     repo = pname;
-    rev = "651d037f32ece5a80b4f52c1e97f33cfe65d6a03";
-    sha256 = "sha256-sZaWmohuL0aLChj51ctLBrbPigwYm86xydshpq1cBY0=";
+    rev = "cca765afc7d0e63455d6ca36f277e36c2c15412a";
+    sha256 = "sha256-qypjmevA3uFeqYMzuMIMhC/V3hXBWr2sDdpbIzmXfsM=";
   };
 
   propagatedBuildInputs = [ localstack-client ];

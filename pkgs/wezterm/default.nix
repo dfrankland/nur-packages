@@ -5,7 +5,7 @@ if (!stdenv.isDarwin) then
 else
   let
     app = "WezTerm.app";
-    version = "20220319-142410-0fcdea07";
+    version = "20220624-141144-bd1b7c5d";
   in
   stdenv.mkDerivation rec {
     pname = "wezterm";
@@ -13,7 +13,7 @@ else
 
     src = fetchzip {
       url = "https://github.com/wez/wezterm/releases/download/${version}/WezTerm-macos-${version}.zip";
-      sha256 = "sha256-hE6GnXSbHQBiOtuCsdhjO2VdxhpzQJSSt/g0Nwwry1Q=";
+      sha256 = "sha256-Z/rLx2LOBGaWWUrEOE6z32Ru5qwu765Z8jjOvqGr3wY=";
     };
 
     buildInputs = [ undmg ];

@@ -4,14 +4,14 @@ with lib;
 
 let
   # get the lastest version from https://trunk.io/releases/latest
-  version = "0.11.0-beta";
+  version = "0.14.1-beta";
   platform = if (stdenv.isDarwin) then "darwin" else "linux";
   cpu = if (stdenv.hostPlatform.isAarch64) then "arm64" else "x86_64";
   sha256 = if (platform == "darwin" && cpu == "arm64")
-    then "c6b2ab71aff04ae510ed52faf92816a4d7f1559b2647e4de16cf7e88c5ac5afb"
+    then "99785d3833ed9ab7c797a6b691e4fe2ddbc3ea938d29b11898b5638532ad3d9d"
     else if (platform == "darwin" && cpu == "x86_64")
-    then "2a2177605b743b94aa36e5ea7fa100105ac5b3bc8132d8661e441396baa59c60"
-    else "791979441af605c631338ede3f442cc3c7d27e262b95777faf0c965de6e19ea4";
+    then "41deb446d79565116d250746f24f3447b681564b58d43e46ecd06a8eb3bcb970"
+    else "0195ca2c830f0e98db3700084176bfd02d668e2f8c872ee8fde5deffe4cc967c";
 in
 stdenv.mkDerivation {
   pname = "trunk";

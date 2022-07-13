@@ -5,10 +5,10 @@ if (!stdenv.isDarwin) then
 else
   let
     app = "GitHub Desktop.app";
-    version = "2.9.11";
-    versionCommit = "${version}-93911c1f";
+    version = "3.0.4";
+    versionCommit = "${version}-06c9bb7f";
     cpu = if (stdenv.hostPlatform.isAarch64) then "arm64" else "x64";
-    sha256 = if (stdenv.hostPlatform.isAarch64) then "sha256-NWXkEI06mzsVLXosJ9eeowDYpthvExgc7qaAdMZMRqk=" else "sha256-fn6eIzjrxKXos68wwKUkjw6mQDZKm/ZbuPKNicnEXVA=";
+    sha256 = if (stdenv.hostPlatform.isAarch64) then "sha256-+4d/bIuTGfoas00fBklar3rZofS1d4gDYPpnK3osaSw=" else "sha256-Is2fGXP7wjdROZAIWOAUYSSSeQtmuQKo2RlP1r6JaP4=";
   in
   stdenv.mkDerivation rec {
     pname = "github-desktop";
