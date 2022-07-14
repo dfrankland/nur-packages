@@ -25,7 +25,7 @@ stdenv.mkDerivation {
   # case that happens when the archive doesn't have a subdirectory.
   setSourceRoot = "sourceRoot=`pwd`";
 
-  nativeBuildInputs = [ autoPatchelfHook makeWrapper ];
+  nativeBuildInputs = lib.optionals stdenv.isLinux [ autoPatchelfHook makeWrapper ];
 
   installPhase = ''
     mkdir -p $out/bin
