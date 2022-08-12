@@ -5,6 +5,7 @@
   modules = import ./modules;
   overlays = import ./overlays;
 
+  authy = pkgs.callPackage ./pkgs/authy { };
   awscli-local = pkgs.callPackage ./pkgs/awscli-local { };
   github-desktop = pkgs.callPackage ./pkgs/github-desktop { };
   google-chrome = pkgs.callPackage ./pkgs/google-chrome { };
