@@ -7,6 +7,7 @@
 
   authy = pkgs.callPackage ./pkgs/authy { };
   awscli-local = pkgs.callPackage ./pkgs/awscli-local { };
+  docker-desktop = pkgs.callPackage ./pkgs/docker-desktop { };
   github-desktop = pkgs.callPackage ./pkgs/github-desktop { };
   google-chrome = pkgs.callPackage ./pkgs/google-chrome { };
   qmk_toolbox = pkgs.callPackage ./pkgs/qmk_toolbox { };
