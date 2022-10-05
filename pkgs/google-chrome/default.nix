@@ -8,11 +8,11 @@ else
   in
   stdenv.mkDerivation {
     pname = "google-chrome";
-    version = "106.0.5249.61";
+    version = "106.0.5249.91";
 
     src = fetchurl {
       url = "https://dl.google.com/chrome/mac/universal/stable/GGRO/googlechrome.dmg";
-      sha256 = "sha256-eWmjYcV3edMfhFN0UEI0PyNUyeFPnZELNi/j+3zR23g=";
+      sha256 = "sha256-vPmu0I+HhK3Ts66DzsnXcAncZoLnvlavR0v7M5bqGFo=";
     };
 
     sourceRoot = app;
