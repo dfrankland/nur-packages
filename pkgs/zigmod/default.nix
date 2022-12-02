@@ -3,28 +3,31 @@
 with lib;
 
 let
+  name = "zigmod";
   version = "r84";
 in
 stdenvNoCC.mkDerivation {
-  pname = "zigmod";
+  pname = name;
   inherit version;
 
   src = fetchFromGitHub {
     owner = "nektro";
-    repo = "zigmod";
-    fetchSubmodules = true;
+    repo = name;
     rev = version;
     sha256 = "sha256-7BBuZrK8XmGhD20H7yK5tBXNoxvtk6/kylzrwnE6nYo=";
+    fetchSubmodules = true;
   };
 
   nativeBuildInputs = [ zigpkgs."master-2022-11-16" git cacert ];
+
+  preBuild = ''
+    export HOME=$TMPDIR
+  '';
 
   installPhase = ''
     mkdir -p $out
     zig build install -Dcpu=baseline --prefix $out
   '';
-
-  XDG_CACHE_HOME = ".cache";
 
   meta = {
     description = "A package manager for the Zig programming language.";

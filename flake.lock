@@ -15,6 +15,22 @@
         "type": "github"
       }
     },
+    "known-folders": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1659425144,
+        "narHash": "sha256-xMgdOKwWqBmw7avcioqQQrrPU1MjzlBMtNjqPfOEtDQ=",
+        "owner": "ziglibs",
+        "repo": "known-folders",
+        "rev": "24845b0103e611c108d6bc334231c464e699742c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ziglibs",
+        "repo": "known-folders",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1657649905,
@@ -33,6 +49,7 @@
     },
     "root": {
       "inputs": {
+        "known-folders": "known-folders",
         "nixpkgs": "nixpkgs",
         "zig-overlay": "zig-overlay"
       }
