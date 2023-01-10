@@ -5,15 +5,15 @@ if (!stdenv.isDarwin) then
 else
   let
     app = "Authy Desktop.app";
-    version = "2.2.1";
+    version = "2.2.2";
   in
   stdenv.mkDerivation rec {
     pname = "authy";
     inherit version;
 
     src = fetchurl {
-      url = "https://s3.amazonaws.com/authy-electron-repository-production/authy/stable/${version}/darwin/x64/Authy%20Desktop-${version}.dmg";
-      sha256 = "sha256-iGY/foPOxaOcQzbfn7OVswRHQxyJAtB2khHx4xAG0ts=";
+      url = "https://pkg.authy.com/authy/stable/${version}/darwin/x64/Authy%20Desktop-${version}.dmg";
+      sha256 = "bf76d0d7b64311f41644bdd5e5d5584eaf8ca11e5962459227beac40c754872e";
     };
 
     sourceRoot = app;

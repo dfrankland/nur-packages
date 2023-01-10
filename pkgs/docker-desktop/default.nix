@@ -1,6 +1,8 @@
 { lib, stdenv, fetchurl, undmg, dpkg, authy }:
 
 let
+  # TODO: Mac version cannot be updated until `undmg` supports XZ file
+  # compression.
   app = "Docker.app";
   version = "4.11.1";
   rev = "84025";
