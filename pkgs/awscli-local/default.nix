@@ -30,7 +30,7 @@ python3Packages.buildPythonApplication rec {
     owner = "localstack";
     repo = pname;
     rev = "26bb3ea62f8a514727662114ea12418fda890588";
-    sha256 = "sha256-qypjmevA3uFeqYMzuMIMhC/V3hXBWr2sDdpbIzmXfsM=";
+    sha256 = "sha256-IHMgRN00JBj0MRKAFqeK05uAXQO7in6wfoyo7joI5Tk=";
   };
 
   propagatedBuildInputs = [ localstack-client ];
