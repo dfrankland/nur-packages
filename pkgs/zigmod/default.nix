@@ -1,4 +1,4 @@
-{ fetchFromGitHub, zigpkgs, git, cacert, lib, stdenvNoCC }:
+{ fetchFromGitHub, zigpkgs, git, cacert, lib, stdenv, autoPatchelfHook }:
 
 with lib;
 
@@ -6,7 +6,7 @@ let
   name = "zigmod";
   version = "r84";
 in
-stdenvNoCC.mkDerivation {
+stdenv.mkDerivation {
   pname = name;
   inherit version;
 
@@ -18,7 +18,13 @@ stdenvNoCC.mkDerivation {
     fetchSubmodules = true;
   };
 
-  nativeBuildInputs = [ zigpkgs."master-2022-11-16" git cacert ];
+  nativeBuildInputs = [
+    zigpkgs."master-2022-11-16"
+    git
+    cacert
+  ] ++ lib.optionals stdenv.isLinux [
+    autoPatchelfHook
+  ];
 
   preBuild = ''
     export HOME=$TMPDIR
@@ -26,8 +32,15 @@ stdenvNoCC.mkDerivation {
 
   installPhase = ''
     mkdir -p $out
-    zig build install -Dcpu=baseline --prefix $out
+    zig build install -Drelease -Dcpu=baseline --prefix $out
   '';
+
+  outputHashMode = "recursive";
+  outputHashAlgo = "sha256";
+  outputHash =
+    if (stdenv.isLinux)
+    then "sha256-9BKuGkeSXsA7IbBbV7wV11pGIrf/7CJfEooQAApmS/k="
+    else "sha256-an1HuIQAtq1QiisGw13R0bHtdt464PBN/OVoJGCv8BY=";
 
   meta = {
     description = "A package manager for the Zig programming language.";
