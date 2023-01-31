@@ -6,7 +6,7 @@ if (!stdenv.isDarwin) then
 else
   let
     app = "Tailscale.app";
-    version = "1.34.2";
+    version = "1.36.0";
   in
   stdenv.mkDerivation rec {
     pname = "tailscale";
@@ -18,9 +18,9 @@ else
     };
 
     installPhase = ''
-      mkdir -p $out/Applications/${app} $out/bin
-      cp -R . $out/Applications/${app}
-      ln -s $out/Applications/${app}/Contents/MacOS/Tailscale $out/bin/tailscale
+      mkdir -p "$out/Applications/${app}" "$out/bin"
+      cp -R . "$out/Applications/${app}"
+      ln -s "$out/Applications/${app}/Contents/MacOS/Tailscale" "$out/bin/tailscale"
     '';
 
     meta = {
