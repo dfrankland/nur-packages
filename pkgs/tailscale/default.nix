@@ -5,8 +5,9 @@ if (!stdenv.isDarwin) then
   tailscale
 else
   let
+    # https://pkgs.tailscale.com/stable/#macos
     app = "Tailscale.app";
-    version = "1.36.0";
+    version = "1.36.1";
   in
   stdenv.mkDerivation rec {
     pname = "tailscale";
@@ -14,7 +15,7 @@ else
 
     src = fetchzip {
       url = "https://pkgs.tailscale.com/stable/Tailscale-${version}-macos.zip";
-      sha256 = "sha256-TDpjB4H2150dYzRQrv76eaoNhHzpHD8nCQxmRVFogQM=";
+      sha256 = "sha256-8oxZyM900Um2AmAy/K5cT0elP1ZfQs/DtkzlftQsQvA=";
     };
 
     installPhase = ''
