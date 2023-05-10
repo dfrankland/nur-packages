@@ -13,6 +13,7 @@
   google-chrome = pkgs.callPackage ./pkgs/google-chrome { };
   qmk_toolbox = pkgs.callPackage ./pkgs/qmk_toolbox { };
   rectangle = pkgs.callPackage ./pkgs/rectangle { };
+  rippling = pkgs.callPackage ./pkgs/rippling { };
   signal-desktop = pkgs.callPackage ./pkgs/signal-desktop { };
   tailscale = pkgs.callPackage ./pkgs/tailscale { };
   trunk = pkgs.callPackage ./pkgs/trunk { };
