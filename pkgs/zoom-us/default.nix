@@ -5,9 +5,12 @@ if (!stdenv.isDarwin) then
 else
   let
     app = "zoom.us.app";
-    version = "5.13.7.15481";
+    version = "5.14.10.19202";
     arch = if (stdenv.hostPlatform.isAarch64) then "arm64/" else "";
-    sha256 = if (stdenv.hostPlatform.isAarch64) then "6fa82035e94fed3d8276327284d3ebd1c51637613c76c58586345b48813c3afd" else "e8e70702b940c1ab4574a055720f3448617293763f04a62936cbf7b240fb1690";
+    sha256 =
+      if (stdenv.hostPlatform.isAarch64)
+      then "c5e344ee6010215967042a428ece58b44a720f0aa32d307ea52ede6c3d7c61d4"
+      else "598dc99817cd78100b254efd2b132a5280a39aef4c350f3cc5b0bfd007db7c84";
   in
   stdenv.mkDerivation {
     pname = "zoom-us";

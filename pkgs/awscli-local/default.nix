@@ -3,13 +3,13 @@
 let
   localstack-client = python3Packages.buildPythonPackage rec {
     pname = "localstack-client";
-    version = "1.39";
+    version = "2.2";
 
     src = fetchFromGitHub {
       owner = "localstack";
       repo = "localstack-python-client";
-      rev = "f1e538ad23700e5b1afe98720404f4801475e470";
-      sha256 = "sha256-htDu+xhnoxWD6KjcBaWN9RQUYxEdiJ4BuZ3eP2V/Dks=";
+      rev = "579d50ce443074e9e5c2c96cef5b62098444aa33";
+      sha256 = "sha256-JLpKldHO9zZwft/0NNuRL2ekJ4nf+dG+CxDPMzdMD4I=";
     };
 
     propagatedBuildInputs = [ python3Packages.boto3 ];
@@ -29,8 +29,8 @@ python3Packages.buildPythonApplication rec {
   src = fetchFromGitHub {
     owner = "localstack";
     repo = pname;
-    rev = "26bb3ea62f8a514727662114ea12418fda890588";
-    sha256 = "sha256-IHMgRN00JBj0MRKAFqeK05uAXQO7in6wfoyo7joI5Tk=";
+    rev = "58544ce0e18a56ea6fed0613642d3773f4987a20";
+    sha256 = "sha256-85uGZ/mliHmUumfYD/URIFrW04zG8LKsMou/bHqtGf8=";
   };
 
   propagatedBuildInputs = [ localstack-client ];

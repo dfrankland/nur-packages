@@ -5,7 +5,7 @@ if (!stdenv.isDarwin) then
 else
   let
     app = "Signal.app";
-    version = "6.12.0";
+    version = "6.21.0";
   in
   stdenv.mkDerivation {
     pname = "signal-desktop";
@@ -13,7 +13,7 @@ else
 
     src = fetchurl {
       url = "https://updates.signal.org/desktop/signal-desktop-mac-universal-${version}.dmg";
-      sha256 = "sha256-MIr5oxp4q4/FD+jsitFeADEtXeRGY65BIP6kLfhc+Tw=";
+      sha256 = "sha256-53y5jw72w9TXdYrvBzmpCcvmolzv4wUdsVFKXOmRL6A=";
     };
 
     sourceRoot = app;
