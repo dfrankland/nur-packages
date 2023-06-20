@@ -7,8 +7,8 @@ python3Packages.buildPythonApplication rec {
   src = fetchFromGitHub {
     owner = "timothymiller";
     repo = pname;
-    rev = "7e6d74f1f6961668f0c2ece4fe500ae493dc5fdf";
-    sha256 = "sha256-/AyTzY8Gw+Mt4OzwLUfMPUFwDE0v8dYs4xxCU2KNRvY=";
+    rev = "6e92fc0d096eda45b62cdbc262a1a3ae3dd6be99";
+    sha256 = "sha256-FRl6craMAY6E/DeOpNSSEy4ObcfUApfrs1C9QS3CDlo=";
   };
 
   propagatedBuildInputs = [ python3Packages.requests ];
@@ -19,6 +19,10 @@ python3Packages.buildPythonApplication rec {
 
     with open('requirements.txt') as f:
         install_requires = f.read().splitlines()
+
+        # TODO: Remove this hack when requests is updated
+        # https://github.com/timothymiller/cloudflare-ddns/pull/137
+        install_requires = ['requests>=2.28.2']
 
     setup(
       name='${pname}',
