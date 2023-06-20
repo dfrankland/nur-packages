@@ -9,6 +9,7 @@
   awscli-local = pkgs.callPackage ./pkgs/awscli-local { };
   cloudflare-ddns = pkgs.callPackage ./pkgs/cloudflare-ddns { };
   docker-desktop = pkgs.callPackage ./pkgs/docker-desktop { };
+  drata-agent = pkgs.callPackage ./pkgs/drata-agent { };
   github-desktop = pkgs.callPackage ./pkgs/github-desktop { };
   google-chrome = pkgs.callPackage ./pkgs/google-chrome { };
   qmk_toolbox = pkgs.callPackage ./pkgs/qmk_toolbox { };

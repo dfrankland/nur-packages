@@ -4,16 +4,16 @@ let
   # TODO: Mac version cannot be updated until `undmg` supports XZ file
   # compression.
   app = "Docker.app";
-  version = "4.11.1";
-  rev = "84025";
+  version = "4.20.1";
+  rev = "110738";
   platform = if (stdenv.isDarwin) then "mac" else "linux";
   cpu = if (stdenv.hostPlatform.isAarch64) then "arm64" else "amd64";
   sha256 =
     if (platform == "mac" && cpu == "arm64")
-    then "a7d84117bef83764cb9bf275cd01b8ba0c43f08dbfe4d4a7d4f05549cdd81f54"
+    then "24869f0ba82b6fab37d09e6f13df091d59f5f878ba325c99d3b36bf67858ccf9"
     else if (platform == "mac" && cpu == "amd64")
-    then "b2f4ad8fea37dfb7d9147f169a9ceab71d7d0d12ff912057c60b58c0e91aed35"
-    else "8877443ded0dee19b1bacaa608bd81d4bb216b59ff5fc12c89489e9ac5b00e0f";
+    then "f0af9a5bf1309d1628d67a693ba67c0373a4bbeab165499d4cdb903ee60a9213"
+    else "b4dc1b7db87e5b84e08e794281707180323c9e49c37f2752b94a4bc5a89dbde1";
   file = if (stdenv.isDarwin) then "Docker.dmg" else "docker-desktop-${version}-${cpu}.deb";
 in
 stdenv.mkDerivation rec {

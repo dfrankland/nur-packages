@@ -1,11 +1,11 @@
-{ lib, stdenv, fetchurl, undmg, authy }:
+{ lib, stdenv, fetchurl, undmg, xz, authy }:
 
 if (!stdenv.isDarwin) then
   authy
 else
   let
     app = "Authy Desktop.app";
-    version = "2.2.2";
+    version = "2.3.0";
   in
   stdenv.mkDerivation rec {
     pname = "authy";
@@ -13,12 +13,26 @@ else
 
     src = fetchurl {
       url = "https://pkg.authy.com/authy/stable/${version}/darwin/x64/Authy%20Desktop-${version}.dmg";
-      sha256 = "bf76d0d7b64311f41644bdd5e5d5584eaf8ca11e5962459227beac40c754872e";
+      sha256 = "5166fd399d3dfe1ff2afcd8652f708518caf2689529d3f43bb41bb692ad4ec81";
     };
 
     sourceRoot = app;
 
-    buildInputs = [ undmg ];
+    buildInputs = [ xz undmg ];
+    unpackPhase =
+      let
+        dmg = "Authy Desktop-${version}.dmg";
+      in
+      ''
+        runHook preUnpack
+
+        file $src
+        cp $src ./Authy-Desktop-2.3.0.dmg.xz
+        xz -d Authy-Desktop-2.3.0.dmg.xz
+        undmg Authy-Desktop-2.3.0.dmg
+
+        runHook postUnpack
+      '';
     installPhase = ''
       mkdir -p "$out/Applications/${app}"
       cp -R . "$out/Applications/${app}"
