@@ -11,6 +11,7 @@
   docker-desktop = pkgs.callPackage ./pkgs/docker-desktop { };
   github-desktop = pkgs.callPackage ./pkgs/github-desktop { };
   google-chrome = pkgs.callPackage ./pkgs/google-chrome { };
+  lcov = pkgs.callPackage ./pkgs/lcov { };
   qmk_toolbox = pkgs.callPackage ./pkgs/qmk_toolbox { };
   rectangle = pkgs.callPackage ./pkgs/rectangle { };
   rippling = pkgs.callPackage ./pkgs/rippling { };
