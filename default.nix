@@ -9,6 +9,7 @@
   awscli-local = pkgs.callPackage ./pkgs/awscli-local { };
   cloudflare-ddns = pkgs.callPackage ./pkgs/cloudflare-ddns { };
   docker-desktop = pkgs.callPackage ./pkgs/docker-desktop { };
+  gbdk-2020 = pkgs.callPackage ./pkgs/gbdk-2020 { };
   github-desktop = pkgs.callPackage ./pkgs/github-desktop { };
   google-chrome = pkgs.callPackage ./pkgs/google-chrome { };
   lcov = pkgs.callPackage ./pkgs/lcov { };
