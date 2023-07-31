@@ -20,7 +20,5 @@
   trunk = pkgs.callPackage ./pkgs/trunk { };
   wavebox = pkgs.callPackage ./pkgs/wavebox { };
   wezterm = pkgs.callPackage ./pkgs/wezterm { };
-  zigmod = pkgs.callPackage ./pkgs/zigmod { };
-  zls = pkgs.callPackage ./pkgs/zls { };
   zoom-us = pkgs.callPackage ./pkgs/zoom-us { };
 }
