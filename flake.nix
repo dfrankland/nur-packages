@@ -12,12 +12,27 @@
       forAllSystems = f:
         nixpkgs.lib.genAttrs supportedSystems (system: f system);
     in
-    {
+    rec {
       packages = forAllSystems (system: import ./default.nix {
         pkgs = import nixpkgs {
           inherit system;
           config.allowUnfree = true;
         };
       });
+
+      devShell = forAllSystems (system:
+        let
+          pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+          };
+        in
+        pkgs.mkShell {
+          buildInputs = attrValues packages.${system};
+
+          shellHook = ''
+            # none
+          '';
+        });
     };
 }
