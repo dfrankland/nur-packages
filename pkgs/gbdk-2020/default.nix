@@ -80,6 +80,13 @@ stdenv.mkDerivation rec {
 
   SDCCDIR = gbdk-2020-sdcc;
 
+  doCheck = true;
+  checkPhase = ''
+    cd build/gbdk/examples
+    make |& tee gdbc-nix-test.log >&2
+    cd ../../..
+  '';
+
   installPhase = ''
     mkdir -p $out
     cp -r build/gbdk/* $out/
