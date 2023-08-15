@@ -2,7 +2,7 @@
 
 let
   app = "Rippling.app";
-  version = "3.5.62";
+  version = "3.5.64";
 in
 stdenv.mkDerivation {
   pname = "rippling";
@@ -10,7 +10,7 @@ stdenv.mkDerivation {
 
   src = fetchurl {
     url = "https://hardware-cdn.rippling.com/installers/Rippling.dmg";
-    sha256 = "sha256-geIxR5v7TvusqO/OJtdsQ38jOVeF7oXXL394pYaWxSk=";
+    sha256 = "sha256-Lh7c8fuS853KCfFmqt/G8+IQF9oArJyqYfThiEMvtoo=";
   };
 
   sourceRoot = app;
