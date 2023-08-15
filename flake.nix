@@ -28,7 +28,7 @@
           };
         in
         pkgs.mkShell {
-          buildInputs = attrValues packages.${system};
+          buildInputs = builtins.attrValues (builtins.removeAttrs packages.${system} [ "lib" "modules" "overlays" ]);
 
           shellHook = ''
             # none
