@@ -1,5 +1,8 @@
 { pkgs ? import <nixpkgs> { } }:
 
+let
+  unpackdmg = pkgs.callPackage ./pkgs/unpackdmg { };
+in
 {
   lib = import ./lib { inherit pkgs; };
   modules = import ./modules;
@@ -19,6 +22,7 @@
   signal-desktop = pkgs.callPackage ./pkgs/signal-desktop { };
   tailscale = pkgs.callPackage ./pkgs/tailscale { };
   trunk = pkgs.callPackage ./pkgs/trunk { };
+  inherit unpackdmg;
   wavebox = pkgs.callPackage ./pkgs/wavebox { };
   wezterm = pkgs.callPackage ./pkgs/wezterm { };
   zoom-us = pkgs.callPackage ./pkgs/zoom-us { };

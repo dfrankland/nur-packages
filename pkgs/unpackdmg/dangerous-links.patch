@@ -1,0 +1,14 @@
+diff -Naur CPP/7zip/UI/Common/ArchiveExtractCallback.cpp CPP/7zip/UI/Common/ArchiveExtractCallback.cpp
+--- CPP/7zip/UI/Common/ArchiveExtractCallback.cpp
++++ CPP/7zip/UI/Common/ArchiveExtractCallback.cpp
+@@ -1965,6 +1965,10 @@:
+   
+   if (!IsSafePath(relatPath))
+   {
++    // install dmgs have often /Application links; don't abort but don't create link either
++    if (_ntOptions.SymLinks_AllowDangerous.Val) {
++      return S_OK;
++    }
+     return SendMessageError2(
+           0, // errorCode
+           "Dangerous link path was ignored",
