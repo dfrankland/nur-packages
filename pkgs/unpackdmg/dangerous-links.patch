@@ -1,6 +1,6 @@
-diff -Naur CPP/7zip/UI/Common/ArchiveExtractCallback.cpp CPP/7zip/UI/Common/ArchiveExtractCallback.cpp
---- CPP/7zip/UI/Common/ArchiveExtractCallback.cpp
-+++ CPP/7zip/UI/Common/ArchiveExtractCallback.cpp
+diff -Naur a/CPP/7zip/UI/Common/ArchiveExtractCallback.cpp b/CPP/7zip/UI/Common/ArchiveExtractCallback.cpp
+--- a/CPP/7zip/UI/Common/ArchiveExtractCallback.cpp
++++ b/CPP/7zip/UI/Common/ArchiveExtractCallback.cpp
 @@ -1965,6 +1965,10 @@:
    
    if (!IsSafePath(relatPath))
