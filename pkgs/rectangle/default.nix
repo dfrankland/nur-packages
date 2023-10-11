@@ -2,7 +2,7 @@
 
 let
   app = "Rectangle.app";
-  version = "0.69";
+  version = "0.73";
 in
 stdenv.mkDerivation {
   pname = "rectangle";
@@ -10,7 +10,7 @@ stdenv.mkDerivation {
 
   src = fetchurl {
     url = "https://github.com/rxhanson/Rectangle/releases/download/v${version}/Rectangle${version}.dmg";
-    sha256 = "sha256-8EQ8AzpYndDOZSMLtMZ9GHInvMBENBha9NKfhzHGcFM=";
+    sha256 = "sha256-D+heCrJVo2xsKY9XtEuhrG/59yFIJTGhKJIfN9Vhc+M=";
   };
 
   sourceRoot = app;
