@@ -8,7 +8,7 @@ in
   modules = import ./modules;
   overlays = import ./overlays;
 
-  authy = pkgs.callPackage ./pkgs/authy { };
+  authy = pkgs.callPackage ./pkgs/authy { inherit unpackdmg; };
   awscli-local = pkgs.callPackage ./pkgs/awscli-local { };
   cloudflare-ddns = pkgs.callPackage ./pkgs/cloudflare-ddns { };
   docker-desktop = pkgs.callPackage ./pkgs/docker-desktop { inherit unpackdmg; };
