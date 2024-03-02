@@ -3,18 +3,18 @@
 with lib;
 
 let
-  # get the lastest version from https://trunk.io/releases/latest
-  version = "1.16.2";
+  # curl -sL 'https://trunk.io/releases/latest'
+  version = "1.20.1";
   platform = if (stdenv.isDarwin) then "darwin" else "linux";
   cpu = if (stdenv.hostPlatform.isAarch64) then "arm64" else "x86_64";
   sha256 =
     if (platform == "darwin" && cpu == "arm64")
-    then "7818813eea3d1ad4da5253bb2cb3c589d140b7d725aac33ae24d2cbc48dc79f8"
+    then "ccf460a7f4357ac0a2750bc3e1a602ae41ee342bc7fa7b22c1cdf3046aecacff"
     else if (platform == "darwin" && cpu == "x86_64")
-    then "9ee5079a35fb767e2b63ec7ccb13ef9bafb52b9c2c37f19facf536a6f2063b95"
+    then "91743ec926223583ad42b3951e79a57e3d85d2d398a78b97bcf09b83e3774a7f"
     else if (cpu == "x86_64")
-    then "3a513dd0da86e037649f811a4dda2523cb84e93a132f13feff80161f12f624ca"
-    else "22b107f47d7f6285cd4da1f1851f085aaa810e2fff035ccf603183dc413b479f";
+    then "9a32c464da3d7d5dc3e4254ea28fd4130539d8e92665d22649bd01b670fe2cab"
+    else "eae75b5212644238dbcf747d9974bef58068d5b4240dcd8c1234d452f417779e";
 in
 stdenv.mkDerivation {
   pname = "trunk";

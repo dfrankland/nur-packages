@@ -3,13 +3,14 @@
 if (!stdenv.isDarwin) then
   google-chrome
 else
+# https://formulae.brew.sh/api/cask/google-chrome.json
   stdenv.mkDerivation {
     pname = "google-chrome";
-    version = "118.0.5993.70";
+    version = "122.0.6261.94";
 
     src = fetchurl {
       url = "https://dl.google.com/chrome/mac/universal/stable/GGRO/googlechrome.dmg";
-      sha256 = "sha256-6zIFAT27XJ9rfKCI89iaPXhIiFew8SGhX5WibOk6Yj8=";
+      sha256 = "sha256-LPUNrJbUi+lUR5AmzjqQFArVm+tENpswrYslbEayuPY=";
     };
 
     buildInputs = [ unpackdmg ];

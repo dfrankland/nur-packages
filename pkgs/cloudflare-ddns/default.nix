@@ -2,13 +2,13 @@
 
 python3Packages.buildPythonApplication rec {
   pname = "cloudflare-ddns";
-  version = "7e6d74f";
+  version = "4ea9ba5745ab65ffd250091e865d140675730f82";
 
   src = fetchFromGitHub {
     owner = "timothymiller";
     repo = pname;
-    rev = "6e92fc0d096eda45b62cdbc262a1a3ae3dd6be99";
-    sha256 = "sha256-FRl6craMAY6E/DeOpNSSEy4ObcfUApfrs1C9QS3CDlo=";
+    rev = "4ea9ba5745ab65ffd250091e865d140675730f82";
+    sha256 = "sha256-fTWx+6GP6x33DA5gOA+7dNIThGkP0Eka9qVdNtz9XAo=";
   };
 
   propagatedBuildInputs = [ python3Packages.requests ];

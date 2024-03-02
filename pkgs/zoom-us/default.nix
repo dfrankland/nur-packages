@@ -3,14 +3,15 @@
 if (!stdenv.isDarwin) then
   zoom-us
 else
+# https://formulae.brew.sh/api/cask/zoom.json
   let
     app = "zoom.us.app";
-    version = "5.16.2.23409";
+    version = "5.17.10.30974";
     arch = if (stdenv.hostPlatform.isAarch64) then "arm64/" else "";
     sha256 =
       if (stdenv.hostPlatform.isAarch64)
-      then "sha256-8K2d2i99fuaatoFR5h2ho3H3GCULIOi/IYMLvnL5VxA="
-      else "sha256-Og7t9NyuwNQIIIaIeWnkTxqQ2MBEHGs8GliUctrueL8=";
+      then "sha256-Wu8b6FICJ9h+m8rR6f8lRw0lJqS/in8CA/91ZS6n0hw="
+      else "sha256-wzCB5/5Yvn+t4GVXhVfKaH+oAom3lVwNeR8tCHsNh8M=";
   in
   stdenv.mkDerivation {
     pname = "zoom-us";

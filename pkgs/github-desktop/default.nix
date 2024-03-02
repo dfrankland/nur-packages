@@ -3,15 +3,16 @@
 if (!stdenv.isDarwin) then
   github-desktop
 else
+# https://formulae.brew.sh/api/cask/github.json
   let
     app = "GitHub Desktop.app";
-    version = "3.3.3";
-    versionCommit = "${version}-abf8a692";
+    version = "3.3.9";
+    versionCommit = "${version}-051b78a0";
     cpu = if (stdenv.hostPlatform.isAarch64) then "arm64" else "x64";
     sha256 =
       if (stdenv.hostPlatform.isAarch64)
-      then "sha256-DWOhY7rasW61nTi6vRoEYGLfXFN0Kz+OWHlv5euEFy4="
-      else "sha256-Vt1QyVsbFwcxDbSwi3J/KUUSOOtKkElqwPUViHStsVE=";
+      then "sha256-qHWRoqqz2aObQkQpoNPn4Sq8pgE+kjXRI2jE/xe1n80="
+      else "sha256-7a7JzrVHeQjoGypEz2FxeZDEQXgb5sv5u7biP0pvFo4=";
   in
   stdenv.mkDerivation rec {
     pname = "github-desktop";

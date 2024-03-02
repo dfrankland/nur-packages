@@ -3,9 +3,10 @@
 if (!stdenv.isDarwin) then
   signal-desktop
 else
+# https://formulae.brew.sh/api/cask/signal.json
   let
     app = "Signal.app";
-    version = "6.33.0";
+    version = "7.0.0";
   in
   stdenv.mkDerivation {
     pname = "signal-desktop";
@@ -13,7 +14,7 @@ else
 
     src = fetchurl {
       url = "https://updates.signal.org/desktop/signal-desktop-mac-universal-${version}.dmg";
-      sha256 = "sha256-LiNpqzagq0Rei+9z+yzxteILyVSQ7WtnJd9hJ5qYlqQ=";
+      sha256 = "sha256-eBggFSrV+eqlApxyBfzEhBtVymlIsjSwUCUDdeUlZzI=";
     };
 
     sourceRoot = app;
