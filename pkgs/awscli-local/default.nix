@@ -12,7 +12,7 @@ let
       sha256 = "sha256-/dORqvhc0+cLi+CaB2fmDs9ykxWTS78WkWM9vKwh4tA=";
     };
 
-    propagatedBuildInputs = [ python3Packages.boto3 ];
+    propagatedBuildInputs = [ python3Packages.pip python3Packages.boto3 ];
 
     meta = with lib; {
       description = "🐍 A lightweight Python client for LocalStack";
