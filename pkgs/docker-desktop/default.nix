@@ -1,4 +1,4 @@
-{ lib, stdenv, fetchurl, unpackdmg, dpkg, authy }:
+{ lib, stdenv, fetchurl, unpackdmg, dpkg }:
 
 let
   # get the lastest version from https://docs.docker.com/desktop/release-notes/
@@ -14,7 +14,7 @@ let
     else "4f2799366028803cd37284f48ec44c7ab6a1953112378621263d8fa62574d658";
   file = if (stdenv.isDarwin) then "Docker.dmg" else "docker-desktop-${version}-${cpu}.deb";
 in
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "docker-desktop";
   inherit version;
 
