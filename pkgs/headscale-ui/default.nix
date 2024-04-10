@@ -1,10 +1,10 @@
-{ lib, stdenv, fetchFromGitHub, nodejs_20, cacert, caddy, makeWrapper }:
+{ lib, fetchFromGitHub, caddy, makeWrapper, buildNpmPackage }:
 
 let
   version = "2024.02.24-beta1";
   pname = "headscale-ui";
 in
-stdenv.mkDerivation rec {
+buildNpmPackage rec {
   inherit pname version;
 
   src = fetchFromGitHub {
@@ -14,16 +14,22 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-jbyy8W/qAso2yb/hNsmVHiT0mJXInpEIejU+3IB9wJY=";
   };
 
-  nativeBuildInputs = [ nodejs_20 cacert makeWrapper ];
+  npmDepsHash = "sha256-SHcsTfX2AnHR8fNCE2+JYV33DtZFQOqN7LSoV+fUu5A=";
+
+  nativeBuildInputs = [ makeWrapper ];
+
+  npmInstallFlags = [ "--logs-max=0" ];
+
+  makeCacheWritable = true;
 
   buildPhase = ''
-    export HOME=$PWD
-    npm install
     substituteInPlace src/routes/settings.html/+page.svelte --replace "insert-version" "${version}"
     npm run build
   '';
 
   installPhase = ''
+    runHook preInstall
+
     mkdir -p $out/bin
     cp -R build $out
     cp docker/production/Caddyfile $out
@@ -34,6 +40,8 @@ stdenv.mkDerivation rec {
       --set-default HTTP_PORT 3000 \
       --set-default HTTPS_PORT 3443 \
       --add-flags "run --adapter caddyfile --config $out/Caddyfile"
+
+    runHook postInstall
   '';
 
   meta = {
