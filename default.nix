@@ -27,5 +27,6 @@ in
   inherit unpackdmg;
   wavebox = pkgs.callPackage ./pkgs/wavebox { };
   wezterm = pkgs.callPackage ./pkgs/wezterm { };
+  wifiman-desktop = pkgs.callPackage ./pkgs/wifiman-desktop { };
   zoom-us = pkgs.callPackage ./pkgs/zoom-us { };
 }
