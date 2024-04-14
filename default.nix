@@ -17,6 +17,7 @@ in
   github-desktop = pkgs.callPackage ./pkgs/github-desktop { };
   google-chrome = pkgs.callPackage ./pkgs/google-chrome { inherit unpackdmg; };
   headscale-ui = pkgs.callPackage ./pkgs/headscale-ui { };
+  pokeapi = pkgs.callPackage ./pkgs/pokeapi { };
   lcov = pkgs.callPackage ./pkgs/lcov { };
   qmk_toolbox = pkgs.callPackage ./pkgs/qmk_toolbox { };
   rectangle = pkgs.callPackage ./pkgs/rectangle { };
