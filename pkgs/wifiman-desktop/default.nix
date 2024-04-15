@@ -13,7 +13,7 @@ let
       if (stdenv.hostPlatform.isAarch64) then
         "sha256-R8F5TiDYpyj3kL6ybovb1aMKJR/UIUGdJYn7QMo/r3o="
       else
-        lib.fakeSha256
+        "sha256-vh57shI6lOy2JOvCatO4PQdRk6oNcLBrBb0PD7L3Dak="
     else
     # TODO: make this work for linux
       if (stdenv.hostPlatform.isAarch64) then lib.fakeSha256 else lib.fakeSha256;
