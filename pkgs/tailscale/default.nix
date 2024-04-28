@@ -1,4 +1,4 @@
-{ lib, stdenv, fetchzip, tailscale }:
+{ lib, stdenv, fetchzip, tailscale, makeWrapper }:
 
 
 if (!stdenv.isDarwin) then
@@ -18,10 +18,14 @@ else
       sha256 = "sha256-AFqOLkycvCNhXbuH4rRj0uHyL7DeEXxBYd6sbuVaxzk=";
     };
 
+    nativeBuildInputs = [ makeWrapper ];
+
     installPhase = ''
       mkdir -p "$out/Applications/${app}" "$out/bin"
       cp -R . "$out/Applications/${app}"
-      ln -s "$out/Applications/${app}/Contents/MacOS/Tailscale" "$out/bin/tailscale"
+      makeWrapper \
+        "$out/Applications/${app}/Contents/MacOS/Tailscale" \
+        "$out/bin/tailscale"
     '';
 
     meta = {
