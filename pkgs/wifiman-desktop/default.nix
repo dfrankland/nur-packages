@@ -22,6 +22,7 @@ stdenv.mkDerivation {
   inherit pname version;
 
   src = fetchurl {
+    # https://ui.com/download/app/wifiman-desktop
     url = "https://desktop.wifiman.com/${pname}-${version}-${system}.pkg";
     inherit sha256;
   };
