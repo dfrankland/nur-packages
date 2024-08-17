@@ -8,8 +8,6 @@ in
   modules = import ./modules;
   overlays = import ./overlays;
 
-  awscli-local = pkgs.callPackage ./pkgs/awscli-local { };
-  cloudflare-ddns = pkgs.callPackage ./pkgs/cloudflare-ddns { };
   docker-desktop = pkgs.callPackage ./pkgs/docker-desktop { inherit unpackdmg; };
   drata-agent = pkgs.callPackage ./pkgs/drata-agent { inherit unpackdmg; };
   gbdk-2020 = pkgs.callPackage ./pkgs/gbdk-2020 { };
