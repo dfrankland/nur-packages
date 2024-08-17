@@ -16,16 +16,11 @@ in
   github-desktop = pkgs.callPackage ./pkgs/github-desktop { };
   google-chrome = pkgs.callPackage ./pkgs/google-chrome { inherit unpackdmg; };
   headscale-ui = pkgs.callPackage ./pkgs/headscale-ui { };
-  lcov = pkgs.callPackage ./pkgs/lcov { };
   qmk_toolbox = pkgs.callPackage ./pkgs/qmk_toolbox { };
-  rectangle = pkgs.callPackage ./pkgs/rectangle { };
   rippling = pkgs.callPackage ./pkgs/rippling { };
   signal-desktop = pkgs.callPackage ./pkgs/signal-desktop { };
-  tailscale = pkgs.callPackage ./pkgs/tailscale { };
   trunk = pkgs.callPackage ./pkgs/trunk { };
   inherit unpackdmg;
   wavebox = pkgs.callPackage ./pkgs/wavebox { };
-  wezterm = pkgs.callPackage ./pkgs/wezterm { };
   wifiman-desktop = pkgs.callPackage ./pkgs/wifiman-desktop { };
-  zoom-us = pkgs.callPackage ./pkgs/zoom-us { };
 }
