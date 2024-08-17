@@ -17,8 +17,10 @@ in
   qmk_toolbox = pkgs.callPackage ./pkgs/qmk_toolbox { };
   rippling = pkgs.callPackage ./pkgs/rippling { };
   signal-desktop = pkgs.callPackage ./pkgs/signal-desktop { };
+  tailscale = pkgs.callPackage ./pkgs/tailscale { };
   trunk = pkgs.callPackage ./pkgs/trunk { };
   inherit unpackdmg;
   wavebox = pkgs.callPackage ./pkgs/wavebox { };
+  wezterm = pkgs.callPackage ./pkgs/wezterm { };
   wifiman-desktop = pkgs.callPackage ./pkgs/wifiman-desktop { };
 }
