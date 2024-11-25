@@ -1,4 +1,4 @@
-{ lib, stdenv, fetchzip, undmg, github-desktop }:
+{ lib, stdenv, fetchzip, undmg, github-desktop, makeWrapper }:
 
 if (!stdenv.isDarwin) then
   github-desktop
@@ -6,13 +6,13 @@ else
 # https://formulae.brew.sh/api/cask/github.json
   let
     app = "GitHub Desktop.app";
-    version = "3.4.3";
-    versionCommit = "${version}-2170ce9b";
+    version = "3.4.9";
+    versionCommit = "${version}-5be94b37";
     cpu = if (stdenv.hostPlatform.isAarch64) then "arm64" else "x64";
     sha256 =
       if (stdenv.hostPlatform.isAarch64)
-      then "sha256-77a9tsksCGitIyAea8iEt4B3V/BlKkyZ5qHyrStKz7w="
-      else "sha256-tvHMhey5L9JcVd3rnfIGyn+gO/CUwvHRv7o0EztME5Q=";
+      then "sha256-cB5XMw4/QdqDDRFVSdxg4bEKpzEa2X0vFbAZyIYBBzM="
+      else "sha256-8SMQRO5BB/PlOhwMv49+ZMmjuAg39DgbUZ16GEn667Y=";
   in
   stdenv.mkDerivation {
     pname = "github-desktop";
@@ -24,9 +24,12 @@ else
     };
 
     buildInputs = [ undmg ];
+    nativeBuildInputs = [ makeWrapper ];
     installPhase = ''
       mkdir -p "$out/Applications/${app}"
       cp -R . "$out/Applications/${app}"
+      wrapProgram "$out/Applications/${app}/Contents/Resources/app/git/bin/git" --set GIT_EXEC_PATH "$out/Applications/${app}/Contents/Resources/app/git/libexec/git-core"
+      wrapProgram "$out/Applications/${app}/Contents/Resources/app/git/libexec/git-core/git" --set GIT_EXEC_PATH "$out/Applications/${app}/Contents/Resources/app/git/libexec/git-core"
     '';
 
     meta = {
