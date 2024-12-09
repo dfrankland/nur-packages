@@ -1,4 +1,4 @@
-{ lib, stdenv, fetchurl, undmg, signal-desktop }:
+{ lib, stdenv, fetchurl, unpackdmg, signal-desktop }:
 
 if (!stdenv.isDarwin) then
   signal-desktop
@@ -19,7 +19,7 @@ else
 
     sourceRoot = app;
 
-    buildInputs = [ undmg ];
+    buildInputs = [ unpackdmg ];
     installPhase = ''
       mkdir -p "$out/Applications/${app}"
       cp -R . "$out/Applications/${app}"

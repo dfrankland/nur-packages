@@ -16,7 +16,7 @@ in
   headscale-ui = pkgs.callPackage ./pkgs/headscale-ui { };
   qmk_toolbox = pkgs.callPackage ./pkgs/qmk_toolbox { };
   rippling = pkgs.callPackage ./pkgs/rippling { };
-  signal-desktop = pkgs.callPackage ./pkgs/signal-desktop { };
+  signal-desktop = pkgs.callPackage ./pkgs/signal-desktop { inherit unpackdmg; };
   tailscale = pkgs.callPackage ./pkgs/tailscale { };
   trunk = pkgs.callPackage ./pkgs/trunk { };
   inherit unpackdmg;
