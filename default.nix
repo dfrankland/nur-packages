@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> { } }:
+{ pkgs ? import <nixpkgs> { }, ghostty }:
 
 let
   unpackdmg = pkgs.callPackage ./pkgs/unpackdmg { };
@@ -11,6 +11,7 @@ in
   docker-desktop = pkgs.callPackage ./pkgs/docker-desktop { inherit unpackdmg; };
   drata-agent = pkgs.callPackage ./pkgs/drata-agent { inherit unpackdmg; };
   gbdk-2020 = pkgs.callPackage ./pkgs/gbdk-2020 { };
+  ghostty = pkgs.callPackage ./pkgs/ghostty { inherit unpackdmg ghostty; };
   github-desktop = pkgs.callPackage ./pkgs/github-desktop { };
   google-chrome = pkgs.callPackage ./pkgs/google-chrome { inherit unpackdmg; };
   headscale-ui = pkgs.callPackage ./pkgs/headscale-ui { };

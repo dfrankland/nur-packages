@@ -2,8 +2,14 @@
   description = "My personal NUR repository";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    zig-overlay.url = "github:mitchellh/zig-overlay";
+    zig-overlay.inputs.nixpkgs.follows = "nixpkgs";
+    ghostty.url = "github:ghostty-org/ghostty/v1.0.0";
+    ghostty.inputs.nixpkgs-unstable.follows = "nixpkgs";
+    ghostty.inputs.nixpkgs-stable.follows = "nixpkgs";
+    ghostty.inputs.zig.follows = "zig-overlay";
   };
-  outputs = { self, nixpkgs }:
+  outputs = { nixpkgs, ghostty, ... }:
     let
       # List of systems supported by home-manager binary
       supportedSystems = nixpkgs.lib.platforms.unix;
@@ -18,6 +24,7 @@
           inherit system;
           config.allowUnfree = true;
         };
+        ghostty = ghostty.packages.${system}.default;
       });
 
       devShell = forAllSystems (system:
