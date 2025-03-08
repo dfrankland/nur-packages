@@ -1,16 +1,17 @@
 { lib, stdenv, fetchurl, undmg }:
 
+# https://formulae.brew.sh/api/cask/rippling.json
 let
   app = "Rippling.app";
-  version = "3.6.32";
+  version = "3.6.38";
 in
 stdenv.mkDerivation {
   pname = "rippling";
   inherit version;
 
   src = fetchurl {
-    url = "https://hardware-cdn.rippling.com/installers/Rippling.dmg";
-    sha256 = "sha256-EREi/j6k/8ZMysUZCXA3VQQa8Rcz9nNLLeDPqkoPNAs=";
+    url = "https://hardware-cdn.rippling.com/device_release/electron-installer/${version}/macos/Rippling.dmg";
+    sha256 = "sha256-kzvTJTeoObynTHD25dy2fAqczJ4pJFKtXeSi3GuNXVI=";
   };
 
   sourceRoot = app;

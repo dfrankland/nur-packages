@@ -6,15 +6,15 @@ else
 # https://formulae.brew.sh/api/cask/ghostty.json
   let
     app = "Ghostty.app";
-    version = "1.0.0";
+    version = "1.1.2";
   in
   stdenv.mkDerivation {
     pname = "ghostty";
     inherit version;
 
     src = fetchurl {
-      url = "https://release.files.ghostty.org/1.0.0/Ghostty.dmg";
-      sha256 = "sha256-CR96Kz9BYKFtfVKygiEku51XFJk4FfYqfXACeYQ3JlI=";
+      url = "https://release.files.ghostty.org/${version}/Ghostty.dmg";
+      sha256 = "sha256-1K0BOWg0ykR/pdCE6/b7XUSVcoD6ryLqRz6WBnUcSOE=";
     };
 
     buildInputs = [ unpackdmg ];

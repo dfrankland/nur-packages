@@ -3,16 +3,15 @@
 let
   # get the lastest version from https://docs.docker.com/desktop/release-notes/
   version = "4.37.2";
-  rev = "179585";
+  rev = "184744";
   platform = if (stdenv.isDarwin) then "mac" else "linux";
   cpu = if (stdenv.hostPlatform.isAarch64) then "arm64" else "amd64";
   sha256 =
     if (platform == "mac" && cpu == "arm64")
-    then "624dec2ae9fc2269e07533921f5905c53514d698858dde25ab10f28f80e333c7"
+    then "553a0b9d155af21ce9dd524a3f59d421f3ac8109c913a2c6bd663f25770803d3"
     else if (platform == "mac" && cpu == "amd64")
-    then "5f58f3acff80bfadaef62e5873810f609ac77df6ebbde99d44360fb6aa93a45d"
-    # There's no `4.37.2` version for linux ¯\_(ツ)_/¯
-    else "";
+    then "1b4e7efccbf0569bfcff23fa7df5e5f11ee4ae31dabc0aa974c8b1b45042832f"
+    else "aa28f130921466b5cf00641d79d25fd3f406de9656604df797f41d70a0bfd287";
   file = if (stdenv.isDarwin) then "Docker.dmg" else "docker-desktop-${version}-${cpu}.deb";
 in
 stdenv.mkDerivation {
