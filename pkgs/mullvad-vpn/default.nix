@@ -39,6 +39,7 @@ else
 
       mkdir -p $out/Applications
       cp -r "Mullvad VPN.app" $out/Applications/
+      ln -s "$out/Applications/Mullvad VPN.app/Contents/Resources" $out/bin
 
       runHook postInstall
     '';
