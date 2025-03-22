@@ -22,6 +22,7 @@ in
   signal-desktop = pkgs.callPackage ./pkgs/signal-desktop { inherit unpackdmg; };
   tailscale = pkgs.callPackage ./pkgs/tailscale { };
   trunk = pkgs.callPackage ./pkgs/trunk { };
+  ungoogled-chromium = pkgs.callPackage ./pkgs/ungoogled-chromium { inherit unpackdmg; };
   inherit unpackdmg;
   wavebox = pkgs.callPackage ./pkgs/wavebox { };
   wezterm = pkgs.callPackage ./pkgs/wezterm { };
