@@ -18,7 +18,7 @@ else
     };
 
     nativeBuildInputs = [ makeWrapper ];
-
+    dontFixup = true; # Don't break code signing. Check with `codesign -dv ./result/Applications/Tailscale.app`
     installPhase = ''
       mkdir -p "$out/Applications/${app}" "$out/bin"
       cp -R . "$out/Applications/${app}"

@@ -24,6 +24,7 @@ stdenv.mkDerivation {
   };
 
   nativeBuildInputs = if (stdenv.isDarwin) then [ unpackdmg ] else [ dpkg ];
+  dontFixup = true; # Don't break code signing. Check with `codesign -dv ./result/Applications/Docker.app`
   installPhase =
     if (stdenv.isDarwin) then ''
       mkdir -p "$out/Applications"

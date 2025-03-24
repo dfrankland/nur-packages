@@ -17,6 +17,7 @@ stdenv.mkDerivation {
   sourceRoot = app;
 
   buildInputs = [ undmg ];
+  dontFixup = true; # Don't break code signing. Check with `codesign -dv ./result/Applications/Rippling.app`
   installPhase = ''
     mkdir -p "$out/Applications/${app}"
     cp -R . "$out/Applications/${app}"

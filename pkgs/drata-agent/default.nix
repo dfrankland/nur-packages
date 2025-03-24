@@ -14,6 +14,7 @@ stdenv.mkDerivation {
   };
 
   buildInputs = [ unpackdmg ];
+  dontFixup = true; # Don't break code signing. Check with `codesign -dv ./result/Applications/Drata\ Agent.app`
   installPhase = ''
     mkdir -p "$out/Applications/${app}"
     cp -R . "$out/Applications/${app}"

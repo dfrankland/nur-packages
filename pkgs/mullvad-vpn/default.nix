@@ -16,6 +16,7 @@ else
     };
 
     nativeBuildInputs = [ xar cpio ];
+    dontFixup = true; # Don't break code signing. Check with `codesign -dv ./result/Applications/Mullvad\ VPN.app`
 
     unpackPhase = ''
       runHook preUnpack
