@@ -1,4 +1,4 @@
-{ lib, stdenv, fetchurl, unpackdmg, github-desktop, makeWrapper, ghostty }:
+{ lib, stdenv, fetchurl, unpackdmg, makeWrapper, ghostty }:
 
 if (!stdenv.isDarwin) then
   ghostty

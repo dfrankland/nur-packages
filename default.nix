@@ -10,6 +10,7 @@ in
 
   docker-desktop = pkgs.callPackage ./pkgs/docker-desktop { inherit unpackdmg; };
   drata-agent = pkgs.callPackage ./pkgs/drata-agent { inherit unpackdmg; };
+  epilogue-playback = pkgs.callPackage ./pkgs/epilogue-playback { inherit unpackdmg; };
   gbdk-2020 = pkgs.callPackage ./pkgs/gbdk-2020 { };
   ghostty = pkgs.callPackage ./pkgs/ghostty { inherit unpackdmg ghostty; };
   github-desktop = pkgs.callPackage ./pkgs/github-desktop { };
