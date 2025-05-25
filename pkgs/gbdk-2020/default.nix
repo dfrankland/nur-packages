@@ -65,13 +65,13 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "gbdk-2020";
-  version = "4.1.1";
+  version = "4.4.0";
 
   src = fetchFromGitHub {
-    owner = "gbdk-2020";
-    repo = "gbdk-2020";
-    rev = "74b5d95c42ecbc73ff29260f67918eea876badf7";
-    sha256 = "sha256-2cv+P4+HR5lWvMCbhtLXcF9tXmsQRm2s+xtztl/9tCw=";
+    owner = pname;
+    repo = pname;
+    rev = version;
+    sha256 = "sha256-t8LOQ4p3RSvxMiNlgok8QemYqZq3GPMA/NYUfyCM67c=";
     deepClone = true;
   };
 

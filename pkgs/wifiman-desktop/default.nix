@@ -1,19 +1,20 @@
 { lib, stdenv, fetchurl, xar, cpio }:
 
+# https://formulae.brew.sh/api/cask/wifiman.json
 let
   pname = "wifiman-desktop";
-  version = "0.3.0";
-  system =
+  version = "1.1.3";
+  system-and-extension =
     if (stdenv.isDarwin) then
-      if (stdenv.hostPlatform.isAarch64) then "mac-arm64" else "mac-x64"
+      if (stdenv.hostPlatform.isAarch64) then "arm64.pkg" else "amd64.pkg"
     else
-      if (stdenv.hostPlatform.isAarch64) then "linux-arm64" else "linux-amd64";
+      "amd64.deb";
   sha256 =
     if (stdenv.isDarwin) then
       if (stdenv.hostPlatform.isAarch64) then
-        "sha256-R8F5TiDYpyj3kL6ybovb1aMKJR/UIUGdJYn7QMo/r3o="
+        "sha256-ztseElREIvKh8m+Wrw+tEbNgZYKVGCtAI/GyisUpekY="
       else
-        "sha256-vh57shI6lOy2JOvCatO4PQdRk6oNcLBrBb0PD7L3Dak="
+        "sha256-ygddarbo5TMSR8C2DEKVRWo5T+z8a8KcI1cThhlL9g4="
     else
     # TODO: make this work for linux
       if (stdenv.hostPlatform.isAarch64) then lib.fakeSha256 else lib.fakeSha256;
@@ -23,7 +24,7 @@ stdenv.mkDerivation {
 
   src = fetchurl {
     # https://ui.com/download/app/wifiman-desktop
-    url = "https://desktop.wifiman.com/${pname}-${version}-${system}.pkg";
+    url = "https://desktop.wifiman.com/${pname}-${version}-${system-and-extension}";
     inherit sha256;
   };
 
@@ -33,7 +34,7 @@ stdenv.mkDerivation {
     runHook preUnpack
 
     xar -x -f $src
-    cd com.ui.wifiman-desktop.pkg
+    cd WifimanDesktop.pkg
 
     runHook postUnpack
   '';

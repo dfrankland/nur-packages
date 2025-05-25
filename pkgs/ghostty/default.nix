@@ -6,7 +6,7 @@ else
 # https://formulae.brew.sh/api/cask/ghostty.json
   let
     app = "Ghostty.app";
-    version = "1.1.2";
+    version = "1.1.3";
   in
   stdenv.mkDerivation {
     pname = "ghostty";
@@ -14,7 +14,7 @@ else
 
     src = fetchurl {
       url = "https://release.files.ghostty.org/${version}/Ghostty.dmg";
-      sha256 = "sha256-1K0BOWg0ykR/pdCE6/b7XUSVcoD6ryLqRz6WBnUcSOE=";
+      sha256 = "sha256-ZOUUGI9UlZjxZtbctvjfKfMz6VTigXKikB6piKFPJkc=";
     };
 
     buildInputs = [ unpackdmg ];
