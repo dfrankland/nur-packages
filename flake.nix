@@ -27,6 +27,8 @@
         ghostty = ghostty.packages.${system}.default;
       });
 
+      # NOTE: Helps verify all packages are buildable.
+      # For example, `nix develop` or `nix develop '.#devShell.x86_64-darwin'`
       devShell = forAllSystems (system:
         let
           pkgs = import nixpkgs {

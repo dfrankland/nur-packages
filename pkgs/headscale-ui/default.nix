@@ -1,7 +1,7 @@
 { lib, fetchFromGitHub, caddy, makeWrapper, buildNpmPackage }:
 
 let
-  version = "2025.01.20";
+  version = "2025.05.22";
   pname = "headscale-ui";
 in
 buildNpmPackage rec {
@@ -11,10 +11,10 @@ buildNpmPackage rec {
     owner = "gurucomputing";
     repo = pname;
     rev = version;
-    sha256 = "sha256-I+kPzVxLwZ3Gw0oLro8j6p7D+n81mbPZ5t2wDcNP0lA=";
+    sha256 = "sha256-/wDk/ENZSgffDEEat13Yob+NmVuJF4bOPeE0XhwgC9Y=";
   };
 
-  npmDepsHash = "sha256-lUSk62YQTFnaIjgz4vZm5By3xffY7+8GqPftS7b5d/Y=";
+  npmDepsHash = "sha256-r8MuY7yhjek2SZyJCv5Xhk9dJE2VgKx7RTdOBr0Bji4=";
 
   nativeBuildInputs = [ makeWrapper ];
 

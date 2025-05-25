@@ -6,13 +6,13 @@ else
 # https://formulae.brew.sh/api/cask/github.json
   let
     app = "GitHub Desktop.app";
-    version = "3.4.17";
-    versionCommit = "${version}-dd36e2aa";
+    version = "3.4.20";
+    versionCommit = "${version}-d2e01c60";
     cpu = if (stdenv.hostPlatform.isAarch64) then "arm64" else "x64";
     sha256 =
       if (stdenv.hostPlatform.isAarch64)
       then "sha256-yjAKvvhn+m16UcjEySMLvZcyub8YhxfztQA53EDULXw="
-      else "sha256-/POxt/ATjRmsabqdsjyWSPDV/w7VpC7gekc5xdT75nY=";
+      else "sha256-1T7Wn/hLiI9keCPA05jSJ7zp7YHFqb6R2r7CwsfJ9j4=";
   in
   stdenv.mkDerivation {
     pname = "github-desktop";

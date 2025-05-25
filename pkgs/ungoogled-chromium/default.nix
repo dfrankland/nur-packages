@@ -5,7 +5,7 @@ if (!stdenv.isDarwin) then
 else
 # https://formulae.brew.sh/api/cask/eloston-chromium.json
   let
-    version = "134.0.6998.117-1.1";
+    version = "136.0.7103.113-1.1";
   in
   stdenv.mkDerivation {
     pname = "ungoogled-chromium";
@@ -13,7 +13,7 @@ else
 
     src = fetchurl {
       url = "https://github.com/ungoogled-software/ungoogled-chromium-macos/releases/download/${version}/ungoogled-chromium_${version}_arm64-macos.dmg";
-      sha256 = "sha256-qUsbc5ncfp7lR7HbuBV46g29GPsHuycc0A9D+c52/O0=";
+      sha256 = "sha256-llaXl2jEegL0DyUBHDW15d8jNXr+kF+TJkrBONIlXCU=";
     };
 
     buildInputs = [ unpackdmg ];
