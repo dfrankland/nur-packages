@@ -13,8 +13,8 @@ let
     else if (platform == "darwin" && cpu == "x86_64")
     then "38fde47e68331fd48f03e2e0396f35b4ee76e3d9e1aff995e6fad46793b91c75"
     else if (cpu == "x86_64")
-    then "d30873fb5416ad4242ea3f1a5a3fac1883a38c9ddd7b8c4ae36aa1324371817b"
-    else "fa67cca348ae3f35f0577d3ddaf0f6f42a7bed0701e91d2650db876c3c08c5da";
+    then "381358bdd532a92724f7f8d4feda7be566f32ac9de8953648b2f8f9d5c42a941"
+    else "d30873fb5416ad4242ea3f1a5a3fac1883a38c9ddd7b8c4ae36aa1324371817b";
 in
 stdenv.mkDerivation {
   pname = "trunk";
