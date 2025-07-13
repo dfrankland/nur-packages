@@ -8,13 +8,13 @@ in
   modules = import ./modules;
   overlays = import ./overlays;
 
+  chromium = pkgs.callPackage ./pkgs/chromium { };
   docker-desktop = pkgs.callPackage ./pkgs/docker-desktop { inherit unpackdmg; };
   drata-agent = pkgs.callPackage ./pkgs/drata-agent { inherit unpackdmg; };
   epilogue-playback = pkgs.callPackage ./pkgs/epilogue-playback { inherit unpackdmg; };
   # TODO: Complete this package so it builds
   # gbdk-2020 = pkgs.callPackage ./pkgs/gbdk-2020 { };
   ghostty = pkgs.callPackage ./pkgs/ghostty { inherit unpackdmg ghostty; };
-  github-desktop = pkgs.callPackage ./pkgs/github-desktop { };
   google-chrome = pkgs.callPackage ./pkgs/google-chrome { inherit unpackdmg; };
   headscale-ui = pkgs.callPackage ./pkgs/headscale-ui { };
   loom = pkgs.callPackage ./pkgs/loom { inherit unpackdmg; };
