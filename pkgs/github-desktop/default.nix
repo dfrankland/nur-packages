@@ -6,13 +6,13 @@ else
 # https://formulae.brew.sh/api/cask/github.json
   let
     app = "GitHub Desktop.app";
-    version = "3.4.20";
-    versionCommit = "${version}-d2e01c60";
+    version = "3.5.2";
+    versionCommit = "${version}-14087268";
     cpu = if (stdenv.hostPlatform.isAarch64) then "arm64" else "x64";
     sha256 =
       if (stdenv.hostPlatform.isAarch64)
-      then "sha256-yjAKvvhn+m16UcjEySMLvZcyub8YhxfztQA53EDULXw="
-      else "sha256-1T7Wn/hLiI9keCPA05jSJ7zp7YHFqb6R2r7CwsfJ9j4=";
+      then "sha256-j9sF89i6CfeYFGhg6+NFldLaKr0OK67IH/rOAHAc/nY="
+      else "sha256-KLeEXjg0vK9yV33JZjCr9CREgBUqco4lQNx/wkevUck=";
   in
   stdenv.mkDerivation {
     pname = "github-desktop";
@@ -22,6 +22,7 @@ else
       url = "https://desktop.githubusercontent.com/releases/${versionCommit}/GitHubDesktop-${cpu}.zip";
       inherit sha256;
     };
+    dontFixup = true; # Don't break code signing. Check with `codesign -dv ./result/Applications/GitHub\ Desktop.app`
 
     buildInputs = [ undmg ];
     nativeBuildInputs = [ makeWrapper ];
