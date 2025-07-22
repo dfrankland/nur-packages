@@ -5,8 +5,7 @@
     zig-overlay.url = "github:mitchellh/zig-overlay";
     zig-overlay.inputs.nixpkgs.follows = "nixpkgs";
     ghostty.url = "github:ghostty-org/ghostty";
-    ghostty.inputs.nixpkgs-unstable.follows = "nixpkgs";
-    ghostty.inputs.nixpkgs-stable.follows = "nixpkgs";
+    ghostty.inputs.nixpkgs.follows = "nixpkgs";
     ghostty.inputs.zig.follows = "zig-overlay";
   };
   outputs = { nixpkgs, ghostty, ... }:

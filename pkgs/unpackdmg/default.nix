@@ -6,6 +6,8 @@ let
   sevenzip = _7zz.overrideAttrs (finalAttrs: previousAttrs: {
     # NOTE: 7zip files use CRLF end of line sequences, but the diff files use LF. Ensure ONLY the
     # content of the diff files use CRLF.
+    #
+    # Just save yourself the heartache and use git for this.
     patches = previousAttrs.patches ++ [ ./dangerous-links.patch ];
   });
 in
