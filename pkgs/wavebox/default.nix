@@ -6,7 +6,7 @@ else
 # https://formulae.brew.sh/api/cask/wavebox.json
   let
     app = "Wavebox.app";
-    version = "10.138.8.2";
+    version = "10.139.12.2";
   in
   stdenv.mkDerivation {
     pname = "wavebox";
@@ -15,7 +15,7 @@ else
     src = fetchurl {
       name = "wavebox-${version}.dmg";
       url = "https://download.wavebox.app/stable/macuniversal/Install%20Wavebox%20${version}.dmg";
-      sha256 = "sha256-vu1csyyMIzLzVmavHyxsGgk8K6GoqOhrII6vVSEbCsk=";
+      sha256 = "sha256-IP5B1bZUK9F0ghruqGcqmwbC4js7NY5pldzVKPIjqMg=";
     };
 
     sourceRoot = app;

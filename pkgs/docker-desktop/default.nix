@@ -2,17 +2,17 @@
 
 let
   # get the lastest version from https://docs.docker.com/desktop/release-notes/
-  version = "4.41.2";
-  rev = "191736";
+  version = "4.44.1";
+  rev = "201842";
   platform = if (stdenv.isDarwin) then "mac" else "linux";
   cpu = if (stdenv.hostPlatform.isAarch64) then "arm64" else "amd64";
   sha256 =
     if (platform == "mac" && cpu == "arm64")
-    then "19c69b358a8ee1b94e308648a2853e398f4bff29f0f74f00ef2d1b462ced1d1c"
+    then "bb962186dada3d95a388e745a02fb3ccb7c1b6f5e4201dec33fd4df677110e81"
     else if (platform == "mac" && cpu == "amd64")
-    then "51a14a53808659f02b48f571dcf0e3cdb03a7e69cc51cc9ecb519bf6b10403df"
-    else "c36f6aba835873d2088f512b0c4da566792136947980d433fa5a5ac76a981add";
-  file = if (stdenv.isDarwin) then "Docker.dmg" else "docker-desktop-${version}-${cpu}.deb";
+    then "4cd8d0368cba4fdb3ba8c5bf8edde49d0994fcce03e3b8517422dbf48a5ea4f9"
+    else "5c7e8f61622d5b4aadbdae85821a99d936fc1792ed864e2cf9da991f76aee1c5";
+  file = if (stdenv.isDarwin) then "Docker.dmg" else "docker-desktop-amd64.deb";
 in
 stdenv.mkDerivation {
   pname = "docker-desktop";

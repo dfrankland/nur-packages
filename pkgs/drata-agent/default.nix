@@ -2,15 +2,15 @@
 
 let
   app = "Drata Agent.app";
-  version = "3.7.0";
+  version = "3.8.0";
 in
 stdenv.mkDerivation {
   pname = "drata-agent";
   inherit version;
 
   src = fetchurl {
-    url = "https://github.com/drata/agent-releases/releases/download/v${version}/Drata-Agent-mac.dmg";
-    sha256 = "sha256-UoTjxvlcxwGkhMIyhN7eSDGo3sqJSeG8CdkUe8Riavs=";
+    url = "https://github.com/drata/agent-releases/releases/download/${version}/Drata-Agent-mac.dmg";
+    sha256 = "sha256-SGodojTQBZraDClHwEHpUSD4lTTgcLHXPORQPSrfYi0=";
   };
 
   buildInputs = [ unpackdmg ];
