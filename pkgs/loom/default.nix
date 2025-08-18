@@ -21,6 +21,7 @@ stdenv.mkDerivation {
 
   sourceRoot = app;
 
+  dontFixup = true; # Don't break code signing. Check with `codesign -dv ./result/Applications/Loom.app`
   buildInputs = [ unpackdmg ];
   installPhase = ''
     mkdir -p "$out/Applications/${app}"
