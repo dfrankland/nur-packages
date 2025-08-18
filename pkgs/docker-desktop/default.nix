@@ -1,4 +1,4 @@
-{ lib, stdenv, fetchurl, unpackdmg, dpkg }:
+{ lib, stdenv, fetchurl, unpackdmg, dpkg, makeWrapper }:
 
 let
   # get the lastest version from https://docs.docker.com/desktop/release-notes/
@@ -13,6 +13,7 @@ let
     then "4cd8d0368cba4fdb3ba8c5bf8edde49d0994fcce03e3b8517422dbf48a5ea4f9"
     else "5c7e8f61622d5b4aadbdae85821a99d936fc1792ed864e2cf9da991f76aee1c5";
   file = if (stdenv.isDarwin) then "Docker.dmg" else "docker-desktop-amd64.deb";
+  app = "Docker.app";
 in
 stdenv.mkDerivation {
   pname = "docker-desktop";
@@ -23,12 +24,19 @@ stdenv.mkDerivation {
     inherit sha256;
   };
 
-  nativeBuildInputs = if (stdenv.isDarwin) then [ unpackdmg ] else [ dpkg ];
+  nativeBuildInputs = if (stdenv.isDarwin) then [ unpackdmg makeWrapper ] else [ dpkg ];
   dontFixup = true; # Don't break code signing. Check with `codesign -dv ./result/Applications/Docker.app`
   installPhase =
     if (stdenv.isDarwin) then ''
       mkdir -p "$out/Applications"
-      cp -R 'Docker.app' "$out/Applications/"
+      cp -R '${app}' "$out/Applications/"
+      makeWrapper \
+        "$out/Applications/${app}/Contents/Resources/bin/docker-credential-desktop" \
+        "$out/bin/docker-credential-desktop"
+      makeWrapper \
+        "$out/Applications/${app}/Contents/Resources/bin/docker-credential-osxkeychain" \
+        "$out/bin/docker-credential-osxkeychain"
+      # NOTE: There are more binaries that can be wrapped (docker, kubectl, extension-admin, hub-tool, etc.)
     '' else ''
       # TODO!
     '';
