@@ -2,16 +2,16 @@
 
 let
   # get the lastest version from https://docs.docker.com/desktop/release-notes/
-  version = "4.44.1";
-  rev = "201842";
+  version = "4.45.0";
+  rev = "203075";
   platform = if (stdenv.isDarwin) then "mac" else "linux";
   cpu = if (stdenv.hostPlatform.isAarch64) then "arm64" else "amd64";
   sha256 =
     if (platform == "mac" && cpu == "arm64")
-    then "bb962186dada3d95a388e745a02fb3ccb7c1b6f5e4201dec33fd4df677110e81"
+    then "ef7d6c7160e46bf6cd01f686ac1e9519d4d932e0cc9767b1cd9cb9f7e61f7433"
     else if (platform == "mac" && cpu == "amd64")
-    then "4cd8d0368cba4fdb3ba8c5bf8edde49d0994fcce03e3b8517422dbf48a5ea4f9"
-    else "5c7e8f61622d5b4aadbdae85821a99d936fc1792ed864e2cf9da991f76aee1c5";
+    then "b48db3cdaadb60d794e8732e99abcd74300454d5c4e8616866934d8cc66dec16"
+    else "1e050f8204357e82fe50be6c054399b13930d504e7a3b3cb88d31a1e6fea65a0";
   file = if (stdenv.isDarwin) then "Docker.dmg" else "docker-desktop-amd64.deb";
   app = "Docker.app";
 in

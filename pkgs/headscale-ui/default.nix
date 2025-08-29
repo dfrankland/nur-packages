@@ -1,7 +1,8 @@
 { lib, fetchFromGitHub, caddy, makeWrapper, buildNpmPackage }:
 
+# https://github.com/gurucomputing/headscale-ui/releases
 let
-  version = "2025.05.22";
+  version = "2025.07.12";
   pname = "headscale-ui";
 in
 buildNpmPackage rec {
@@ -11,7 +12,7 @@ buildNpmPackage rec {
     owner = "gurucomputing";
     repo = pname;
     rev = version;
-    sha256 = "sha256-/wDk/ENZSgffDEEat13Yob+NmVuJF4bOPeE0XhwgC9Y=";
+    sha256 = "sha256-8hn7F3dw+kIHn9tq+BpEOisQElH6QwYg6n3knz/7r1c=";
   };
 
   npmDepsHash = "sha256-r8MuY7yhjek2SZyJCv5Xhk9dJE2VgKx7RTdOBr0Bji4=";

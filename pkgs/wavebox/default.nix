@@ -1,4 +1,4 @@
-{ lib, stdenv, fetchurl, undmg, wavebox }:
+{ lib, stdenv, fetchzip, wavebox }:
 
 if (!stdenv.isDarwin) then
   wavebox
@@ -6,21 +6,20 @@ else
 # https://formulae.brew.sh/api/cask/wavebox.json
   let
     app = "Wavebox.app";
-    version = "10.139.12.2";
+    version = "10.139.20.2";
+    platform = if (stdenv.hostPlatform.isAarch64) then "macarm64" else "mac";
   in
   stdenv.mkDerivation {
     pname = "wavebox";
     inherit version;
 
-    src = fetchurl {
+    src = fetchzip {
       name = "wavebox-${version}.dmg";
-      url = "https://download.wavebox.app/stable/macuniversal/Install%20Wavebox%20${version}.dmg";
-      sha256 = "sha256-IP5B1bZUK9F0ghruqGcqmwbC4js7NY5pldzVKPIjqMg=";
+      url = "https://download.wavebox.app/stable/${platform}/Wavebox_${version}.zip";
+      sha256 = "sha256-ad11n31UuZg4ImHEUOGlkIuESPtGihnSwx+K/KDHYMY=";
+      stripRoot = false;
     };
 
-    sourceRoot = app;
-
-    buildInputs = [ undmg ];
     # Don't break code signing. Check with `codesign -dv ./result/Applications/Wavebox.app`.
     # Also, stripping is slow on x86_64.
     dontFixup = true;

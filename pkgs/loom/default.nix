@@ -3,12 +3,12 @@
 # https://formulae.brew.sh/api/cask/loom.json
 let
   app = "Loom.app";
-  version = "0.309.2";
+  version = "0.314.0";
   cpu = if (stdenv.hostPlatform.isAarch64) then "-arm64" else "";
   sha256 =
     if (stdenv.hostPlatform.isAarch64)
-    then "sha256-yMXK436BdleKsurCUVdpanncXokJKG8Fs5xAb57JjMU="
-    else "sha256-GuFAyBP8tG0bkn46SKPq5sqSeDc1V75WzsoQJYZaXkM=";
+    then "sha256-k5MaSK19drRhlv2gAyEbSW6s/9nj6/n7X2zKKoZb6GY="
+    else lib.fakeSha256;
 in
 stdenv.mkDerivation {
   pname = "loom";

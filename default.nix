@@ -16,7 +16,6 @@ in
   # gbdk-2020 = pkgs.callPackage ./pkgs/gbdk-2020 { };
   ghostty = pkgs.callPackage ./pkgs/ghostty { inherit unpackdmg ghostty; };
   github-desktop = pkgs.callPackage ./pkgs/github-desktop { };
-  google-chrome = pkgs.callPackage ./pkgs/google-chrome { inherit unpackdmg; };
   headscale-ui = pkgs.callPackage ./pkgs/headscale-ui { };
   loom = pkgs.callPackage ./pkgs/loom { inherit unpackdmg; };
   mullvad-vpn = pkgs.callPackage ./pkgs/mullvad-vpn { };

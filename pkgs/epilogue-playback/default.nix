@@ -2,7 +2,7 @@
 
 # https://formulae.brew.sh/api/cask/epilogue-playback.json
 let
-  version = "1.5.1";
+  version = "1.8.0";
   urlArch = if (stdenv.isDarwin) then "mac" else "linux";
   urlFile =
     if (stdenv.isDarwin)
@@ -12,7 +12,7 @@ let
     else "Playback.AppImage";
   sha256 =
     if (stdenv.isDarwin)
-    then "sha256-WiriPY/WqwUGxjes0/bsgh/oevQKoMgyqDSOaBSxjUU="
+    then "sha256-qK1+rLvsrZFZrwyfdtDLqug55jPjle+kvrx+0IxQvNk="
     else if (stdenv.isAarch64)
     then lib.fakeSha256
     else lib.fakeSha256;
@@ -37,7 +37,7 @@ then
     buildInputs = [ unpackdmg ];
     installPhase = ''
       mkdir -p "$out/Applications"
-      cp -R . "$out/Applications/"
+      cp -R "Playback.app" "$out/Applications/"
     '';
   }
 else
