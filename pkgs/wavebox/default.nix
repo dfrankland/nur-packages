@@ -24,8 +24,8 @@ else
     # Also, stripping is slow on x86_64.
     dontFixup = true;
     installPhase = ''
-      mkdir -p "$out/Applications/${app}"
-      cp -R . "$out/Applications/${app}"
+      mkdir -p "$out/Applications/"
+      cp -R . "$out/Applications/"
     '';
 
     meta = {
