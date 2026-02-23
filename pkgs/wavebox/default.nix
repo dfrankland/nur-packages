@@ -6,7 +6,7 @@ else
 # https://formulae.brew.sh/api/cask/wavebox.json
   let
     app = "Wavebox.app";
-    version = "10.143.17.2";
+    version = "10.145.17.2";
     platform = if (stdenv.hostPlatform.isAarch64) then "macarm64" else "mac";
   in
   stdenv.mkDerivation {
@@ -16,7 +16,7 @@ else
     src = fetchzip {
       name = "wavebox-${version}.dmg";
       url = "https://download.wavebox.app/stable/${platform}/Wavebox_${version}.zip";
-      sha256 = "sha256-HffQyhIwx56DHKT/nGey+SG3DEHWOYZBF6QagYm1sYo=";
+      sha256 = "sha256-e7H2dsf/lGIDug14N+1FvSncAKB9u323YJ7TTbTa8x4=";
       stripRoot = false;
     };
 
