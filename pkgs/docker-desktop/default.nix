@@ -36,7 +36,9 @@ stdenv.mkDerivation {
       makeWrapper \
         "$out/Applications/${app}/Contents/Resources/bin/docker-credential-osxkeychain" \
         "$out/bin/docker-credential-osxkeychain"
-      # NOTE: There are more binaries that can be wrapped (docker, kubectl, extension-admin, hub-tool, etc.)
+      makeWrapper \
+        "$out/Applications/${app}/Contents/Resources/bin/docker" \
+        "$out/bin/docker"
     '' else ''
       # TODO!
     '';
