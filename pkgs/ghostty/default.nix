@@ -17,6 +17,8 @@ else
       sha256 = "sha256-ZOUUGI9UlZjxZtbctvjfKfMz6VTigXKikB6piKFPJkc=";
     };
 
+    outputs = [ "out" "terminfo" ];
+
     buildInputs = [ unpackdmg ];
     nativeBuildInputs = [ makeWrapper ];
     installPhase = ''
@@ -25,6 +27,12 @@ else
       makeWrapper \
         "$out/Applications/${app}/Contents/MacOS/ghostty" \
         "$out/bin/ghostty"
+
+      # Set up terminfo output for system-wide availability
+      mkdir -p "$out/nix-support"
+      mkdir -p "$terminfo/share"
+      cp -r "$out/Applications/${app}/Contents/Resources/terminfo" "$terminfo/share/terminfo"
+      echo "$terminfo" >> "$out/nix-support/propagated-user-env-packages"
     '';
 
     meta = {
