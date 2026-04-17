@@ -42,6 +42,14 @@
         };
 
         formatter = pkgs.alejandra;
+
+        checks.alejandra =
+          pkgs.runCommand "alejandra" {
+            nativeBuildInputs = [pkgs.alejandra];
+          } ''
+            alejandra --check ${./.}
+            touch "$out"
+          '';
       };
     });
 }
