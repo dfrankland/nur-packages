@@ -7,8 +7,9 @@
     ghostty.url = "github:ghostty-org/ghostty";
     ghostty.inputs.nixpkgs.follows = "nixpkgs";
     ghostty.inputs.zig.follows = "zig-overlay";
+    zmx.url = "github:neurosnap/zmx";
   };
-  outputs = { nixpkgs, ghostty, ... }:
+  outputs = { nixpkgs, ghostty, zmx, ... }:
     let
       # List of systems supported by home-manager binary
       supportedSystems = nixpkgs.lib.platforms.unix;
@@ -24,6 +25,7 @@
           config.allowUnfree = true;
         };
         ghostty = ghostty.packages.${system}.default;
+        inherit zmx;
       });
 
       # NOTE: Helps verify all packages are buildable.

@@ -1,4 +1,8 @@
-{ pkgs ? import <nixpkgs> { }, ghostty }:
+{
+  pkgs ? import <nixpkgs> { },
+  ghostty ? pkgs.ghostty,
+  zmx ? null,
+}:
 
 let
   unpackdmg = pkgs.callPackage ./pkgs/unpackdmg { };
@@ -29,4 +33,5 @@ in
   wavebox = pkgs.callPackage ./pkgs/wavebox { };
   wezterm = pkgs.callPackage ./pkgs/wezterm { };
   wifiman-desktop = pkgs.callPackage ./pkgs/wifiman-desktop { };
+  zmx = pkgs.callPackage ./pkgs/zmx { inherit zmx; };
 }
