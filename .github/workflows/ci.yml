@@ -28,4 +28,4 @@ jobs:
         run: nix flake show
 
       - name: Run flake check
-        run: nix flake check
+        run: NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1 nix flake check --impure
