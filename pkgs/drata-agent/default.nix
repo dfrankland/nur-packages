@@ -27,6 +27,6 @@ in
       description = "Drata compliance agent";
       homepage = "https://app.drata.com/employee/install-agent";
       license = lib.licenses.unfree;
-      platforms = lib.platforms.darwin;
+      platforms = ["aarch64-darwin"];
     };
   }

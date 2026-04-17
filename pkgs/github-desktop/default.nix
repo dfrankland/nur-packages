@@ -14,14 +14,8 @@ else
     app = "GitHub Desktop.app";
     version = "3.5.2";
     versionCommit = "${version}-14087268";
-    cpu =
-      if (stdenv.hostPlatform.isAarch64)
-      then "arm64"
-      else "x64";
-    sha256 =
-      if (stdenv.hostPlatform.isAarch64)
-      then "sha256-j9sF89i6CfeYFGhg6+NFldLaKr0OK67IH/rOAHAc/nY="
-      else "sha256-KLeEXjg0vK9yV33JZjCr9CREgBUqco4lQNx/wkevUck=";
+    cpu = "arm64";
+    sha256 = "sha256-j9sF89i6CfeYFGhg6+NFldLaKr0OK67IH/rOAHAc/nY=";
   in
     stdenv.mkDerivation {
       pname = "github-desktop";
@@ -46,6 +40,6 @@ else
         description = "GUI for managing Git and GitHub.";
         homepage = "https://desktop.github.com/";
         license = lib.licenses.mit;
-        platforms = lib.platforms.darwin;
+        platforms = ["aarch64-darwin"];
       };
     }

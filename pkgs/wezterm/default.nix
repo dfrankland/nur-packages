@@ -30,6 +30,6 @@ in
       homepage = "https://wezfurlong.org/wezterm";
       changelog = "https://wezfurlong.org/wezterm/changelog.html#${version}";
       license = lib.licenses.mit;
-      platforms = lib.platforms.darwin;
+      platforms = ["aarch64-darwin"];
     };
   }

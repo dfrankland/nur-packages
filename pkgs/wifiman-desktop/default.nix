@@ -11,17 +11,11 @@ let
   version = "1.1.3";
   system-and-extension =
     if (stdenv.isDarwin)
-    then
-      if (stdenv.hostPlatform.isAarch64)
-      then "arm64.pkg"
-      else "amd64.pkg"
+    then "arm64.pkg"
     else "amd64.deb";
   sha256 =
     if (stdenv.isDarwin)
-    then
-      if (stdenv.hostPlatform.isAarch64)
-      then "sha256-ztseElREIvKh8m+Wrw+tEbNgZYKVGCtAI/GyisUpekY="
-      else "sha256-ygddarbo5TMSR8C2DEKVRWo5T+z8a8KcI1cThhlL9g4="
+    then "sha256-ztseElREIvKh8m+Wrw+tEbNgZYKVGCtAI/GyisUpekY="
     else
       # TODO: make this work for linux
       if (stdenv.hostPlatform.isAarch64)
@@ -76,6 +70,6 @@ in
       description = "Connect remotely to your UniFi network via Teleport VPN.";
       license = lib.licenses.unfree;
       # TODO: make this work for linux
-      platforms = lib.platforms.darwin;
+      platforms = ["aarch64-darwin"];
     };
   }

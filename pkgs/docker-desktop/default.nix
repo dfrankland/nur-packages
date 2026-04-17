@@ -14,14 +14,12 @@
     then "mac"
     else "linux";
   cpu =
-    if (stdenv.hostPlatform.isAarch64)
+    if (stdenv.isDarwin)
     then "arm64"
     else "amd64";
   sha256 =
     if (platform == "mac" && cpu == "arm64")
     then "45b220c6bdcce748d94d83271b607a684a918c1b24eb2fc2b8807fe798912834"
-    else if (platform == "mac" && cpu == "amd64")
-    then "73fcfabd1c7311ee628f1a4c6f63769b0ec72f73258cf3cf807d1c76874aabe3"
     else "3a4e2cebabac0971728e07c01d2919f5931d6f7af2f8b7af5ec6cd45778e4c68";
   file =
     if (stdenv.isDarwin)
@@ -66,6 +64,6 @@ in
       homepage = "https://www.docker.com/products/docker-desktop/";
       description = "Docker Desktop is an easy-to-install application for your Mac or Windows environment that enables you to build and share containerized applications and microservices.";
       license = licenses.unfree;
-      platforms = lib.platforms.unix;
+      platforms = ["x86_64-linux" "aarch64-darwin"];
     };
   }

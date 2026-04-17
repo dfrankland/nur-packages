@@ -13,18 +13,9 @@ else
   # https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html?prefix=Mac_Arm/
   # and filter for `LAST_CHANGE` to find the version number of the latest release
   let
-    version =
-      if (stdenv.hostPlatform.isAarch64)
-      then "1508458"
-      else "1508455";
-    arch =
-      if (stdenv.hostPlatform.isAarch64)
-      then "Mac_Arm"
-      else "Mac";
-    sha256 =
-      if (stdenv.hostPlatform.isAarch64)
-      then "sha256-02f3tY+Q7S772BDwj/0oWGtZaNCWNb9SM19EGLzQd6Q="
-      else "sha256-sN+EUq3xukxmoSL+3PaNp1SDMLDq7/3Mj1i9LYRoVnM=";
+    version = "1508458";
+    arch = "Mac_Arm";
+    sha256 = "sha256-02f3tY+Q7S772BDwj/0oWGtZaNCWNb9SM19EGLzQd6Q=";
   in
     stdenv.mkDerivation {
       pname = "chromium";
@@ -48,6 +39,6 @@ else
         downloadPage = "https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html";
         homepage = "https://www.chromium.org/Home/";
         license = lib.licenses.bsd3;
-        platforms = lib.platforms.darwin;
+        platforms = ["aarch64-darwin"];
       };
     }

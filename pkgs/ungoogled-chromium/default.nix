@@ -29,6 +29,6 @@ in
       description = "Google Chromium, sans integration with Google";
       homepage = "https://github.com/ungoogled-software/ungoogled-chromium";
       license = lib.licenses.bsd3;
-      platforms = lib.platforms.darwin;
+      platforms = ["aarch64-darwin"];
     };
   }

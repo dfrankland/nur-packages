@@ -31,6 +31,6 @@ in
       description = "Rippling device management";
       homepage = "https://app.rippling.com/downloads/hardware-management/";
       license = lib.licenses.unfree;
-      platforms = lib.platforms.darwin;
+      platforms = ["aarch64-darwin"];
     };
   }

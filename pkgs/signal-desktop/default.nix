@@ -40,6 +40,6 @@ else
         homepage = "https://signal.org/";
         changelog = "https://github.com/signalapp/Signal-Desktop/releases/tag/v${version}";
         license = lib.licenses.agpl3Only;
-        platforms = lib.platforms.darwin;
+        platforms = ["aarch64-darwin"];
       };
     }

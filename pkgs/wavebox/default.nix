@@ -11,10 +11,7 @@ else
   let
     app = "Wavebox.app";
     version = "10.145.17.2";
-    platform =
-      if (stdenv.hostPlatform.isAarch64)
-      then "macarm64"
-      else "mac";
+    platform = "macarm64";
   in
     stdenv.mkDerivation {
       pname = "wavebox";
@@ -39,6 +36,6 @@ else
         description = "Wavebox messaging application";
         homepage = "https://wavebox.io";
         license = lib.licenses.mpl20;
-        platforms = lib.platforms.darwin;
+        platforms = ["aarch64-darwin"];
       };
     }

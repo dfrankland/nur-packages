@@ -26,6 +26,6 @@ in
       description = "A Toolbox companion for QMK Firmware";
       homepage = "https://github.com/qmk/qmk_toolbox";
       license = lib.licenses.mit;
-      platforms = lib.platforms.darwin;
+      platforms = ["aarch64-darwin"];
     };
   }

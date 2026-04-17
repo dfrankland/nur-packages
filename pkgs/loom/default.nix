@@ -8,14 +8,8 @@
 let
   app = "Loom.app";
   version = "0.332.0";
-  cpu =
-    if (stdenv.hostPlatform.isAarch64)
-    then "-arm64"
-    else "";
-  sha256 =
-    if (stdenv.hostPlatform.isAarch64)
-    then "sha256-2tXUiP8qjleW2KIsg30IV+Xu38a+xsPIb1qWpIW9aJg="
-    else lib.fakeSha256;
+  cpu = "-arm64";
+  sha256 = "sha256-2tXUiP8qjleW2KIsg30IV+Xu38a+xsPIb1qWpIW9aJg=";
 in
   stdenv.mkDerivation {
     pname = "loom";
@@ -39,6 +33,6 @@ in
       description = "Screen and video recording software";
       homepage = "https://www.loom.com/";
       license = lib.licenses.unfree;
-      platforms = lib.platforms.darwin;
+      platforms = ["aarch64-darwin"];
     };
   }
