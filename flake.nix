@@ -29,16 +29,12 @@
       }: {
         _module.args.pkgs = import nixpkgs {
           inherit system;
-          overlays = [
-            (final: prev: {
-              zmx = inputs.zmx.packages.${system}.default;
-            })
-          ];
           config.allowUnfree = true;
         };
 
         packages = import ./default.nix {
           inherit pkgs;
+          zmx = inputs.zmx;
         };
 
         formatter = pkgs.alejandra;
