@@ -1,6 +1,17 @@
-{ lib, stdenv, fetchFromGitHub, fetchpatch, fetchsvn, fetchurl, gcc, flex, bison, boost, texinfo, zlib }:
-
-let
+{
+  lib,
+  stdenv,
+  fetchFromGitHub,
+  fetchpatch,
+  fetchsvn,
+  fetchurl,
+  gcc,
+  flex,
+  bison,
+  boost,
+  texinfo,
+  zlib,
+}: let
   gbdk-2020-sdcc = stdenv.mkDerivation rec {
     pname = "gbdk-2020-sdcc";
     version = "14228";
@@ -20,7 +31,7 @@ let
       })
     ];
 
-    nativeBuildInputs = [ flex bison boost texinfo zlib ];
+    nativeBuildInputs = [flex bison boost texinfo zlib];
 
     buildPhase = ''
       cd ./sdcc
@@ -45,17 +56,21 @@ let
       # Move cc1 to it's special hardwired path
       mkdir libexec
       mkdir libexec/sdcc
-      ${(if (stdenv.isDarwin) then ''
-        # Special case - use sdcc official build of cc1 since it has static linkage for libisl, libzstd (had some trouble with that on this build)
-        # this will untar into libexec/sdcc/cc1
-        cp ${(fetchurl {
-          url = "https://github.com/gbdk-2020/gbdk-2020-sdcc/releases/download/sdcc-extras/sdcc-4.3-macos-cc1-14110.tar.gz";
-          sha256 = "sha256-bVrKXjSwzxpxMsdmWkRZXIwbK6ysXNoV1gmo6c65QsI=";
-        })} macos-cc1.tar.gz
-        tar xvfz macos-cc1.tar.gz
-      '' else ''
-        mv bin/cc1 libexec/sdcc
-      '')}
+      ${(
+        if (stdenv.isDarwin)
+        then ''
+          # Special case - use sdcc official build of cc1 since it has static linkage for libisl, libzstd (had some trouble with that on this build)
+          # this will untar into libexec/sdcc/cc1
+          cp ${(fetchurl {
+            url = "https://github.com/gbdk-2020/gbdk-2020-sdcc/releases/download/sdcc-extras/sdcc-4.3-macos-cc1-14110.tar.gz";
+            sha256 = "sha256-bVrKXjSwzxpxMsdmWkRZXIwbK6ysXNoV1gmo6c65QsI=";
+          })} macos-cc1.tar.gz
+          tar xvfz macos-cc1.tar.gz
+        ''
+        else ''
+          mv bin/cc1 libexec/sdcc
+        ''
+      )}
 
       mkdir -p $out
       cp -r bin $out/
@@ -63,43 +78,43 @@ let
     '';
   };
 in
-stdenv.mkDerivation rec {
-  pname = "gbdk-2020";
-  version = "4.4.0";
+  stdenv.mkDerivation rec {
+    pname = "gbdk-2020";
+    version = "4.4.0";
 
-  src = fetchFromGitHub {
-    owner = pname;
-    repo = pname;
-    rev = version;
-    sha256 = "sha256-t8LOQ4p3RSvxMiNlgok8QemYqZq3GPMA/NYUfyCM67c=";
-    deepClone = true;
-  };
+    src = fetchFromGitHub {
+      owner = pname;
+      repo = pname;
+      rev = version;
+      sha256 = "sha256-t8LOQ4p3RSvxMiNlgok8QemYqZq3GPMA/NYUfyCM67c=";
+      deepClone = true;
+    };
 
-  nativeBuildInputs = [ gbdk-2020-sdcc gcc ];
-  buildInputs = [ gbdk-2020-sdcc ];
+    nativeBuildInputs = [gbdk-2020-sdcc gcc];
+    buildInputs = [gbdk-2020-sdcc];
 
-  SDCCDIR = gbdk-2020-sdcc;
+    SDCCDIR = gbdk-2020-sdcc;
 
-  doCheck = true;
-  checkPhase = ''
-    cd build/gbdk/examples
-    make |& tee gdbc-nix-test.log >&2
-    cd ../../..
-  '';
+    doCheck = true;
+    checkPhase = ''
+      cd build/gbdk/examples
+      make |& tee gdbc-nix-test.log >&2
+      cd ../../..
+    '';
 
-  installPhase = ''
-    mkdir -p $out
-    cp -r build/gbdk/* $out/
-  '';
+    installPhase = ''
+      mkdir -p $out
+      cp -r build/gbdk/* $out/
+    '';
 
-  meta = with lib; {
-    description = "An updated version of GBDK, A C compiler, assembler, linker and set of libraries for the Z80 like Nintendo Gameboy.";
+    meta = with lib; {
+      description = "An updated version of GBDK, A C compiler, assembler, linker and set of libraries for the Z80 like Nintendo Gameboy.";
 
-    longDescription = "GBDK is a cross-platform development kit for sm83 and z80 based gaming consoles. It includes libraries, toolchain utilities and the SDCC C compiler suite.";
+      longDescription = "GBDK is a cross-platform development kit for sm83 and z80 based gaming consoles. It includes libraries, toolchain utilities and the SDCC C compiler suite.";
 
-    homepage = "https://gbdk-2020.github.io/gbdk-2020/";
-    license = lib.licenses.gpl2;
+      homepage = "https://gbdk-2020.github.io/gbdk-2020/";
+      license = lib.licenses.gpl2;
 
-    platforms = platforms.all;
-  };
-}
+      platforms = platforms.all;
+    };
+  }

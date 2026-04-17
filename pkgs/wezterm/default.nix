@@ -1,11 +1,15 @@
-{ lib, stdenv, fetchzip, undmg, wezterm }:
-
-if (!stdenv.isDarwin) then
-  wezterm
-else
-  let
-    version = "20240203-110809-5046fc22";
-  in
+{
+  lib,
+  stdenv,
+  fetchzip,
+  undmg,
+  wezterm,
+}:
+if (!stdenv.isDarwin)
+then wezterm
+else let
+  version = "20240203-110809-5046fc22";
+in
   stdenv.mkDerivation rec {
     pname = "wezterm";
     inherit version;
@@ -15,7 +19,7 @@ else
       sha256 = "sha256-HKUC7T7VJ+3dDtbOoFc/kVUBUGstsAZn+IpD9oRIMXw=";
     };
 
-    buildInputs = [ undmg ];
+    buildInputs = [undmg];
     installPhase = ''
       mkdir -p "$out/Applications/"
       cp -R . "$out/Applications/"

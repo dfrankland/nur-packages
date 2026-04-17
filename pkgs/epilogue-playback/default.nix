@@ -1,9 +1,17 @@
-{ lib, stdenv, fetchurl, unpackdmg, appimageTools }:
-
+{
+  lib,
+  stdenv,
+  fetchurl,
+  unpackdmg,
+  appimageTools,
+}:
 # https://formulae.brew.sh/api/cask/epilogue-playback.json
 let
   version = "1.8.0";
-  urlArch = if (stdenv.isDarwin) then "mac" else "linux";
+  urlArch =
+    if (stdenv.isDarwin)
+    then "mac"
+    else "linux";
   urlFile =
     if (stdenv.isDarwin)
     then "Playback.dmg"
@@ -28,19 +36,19 @@ let
     platforms = lib.platforms.unix;
   };
 in
-if (stdenv.isDarwin)
-then
-  stdenv.mkDerivation
-  {
-    inherit pname version src meta;
+  if (stdenv.isDarwin)
+  then
+    stdenv.mkDerivation
+    {
+      inherit pname version src meta;
 
-    buildInputs = [ unpackdmg ];
-    installPhase = ''
-      mkdir -p "$out/Applications"
-      cp -R "Playback.app" "$out/Applications/"
-    '';
-  }
-else
-  appimageTools.wrapType2 {
-    inherit pname version src meta;
-  }
+      buildInputs = [unpackdmg];
+      installPhase = ''
+        mkdir -p "$out/Applications"
+        cp -R "Playback.app" "$out/Applications/"
+      '';
+    }
+  else
+    appimageTools.wrapType2 {
+      inherit pname version src meta;
+    }

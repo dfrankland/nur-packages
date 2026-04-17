@@ -1,11 +1,15 @@
-{ lib, stdenv, fetchurl, unpackdmg, ungoogled-chromium }:
-
-if (!stdenv.isDarwin) then
-  ungoogled-chromium
-else
-  let
-    version = "139.0.7258.138-1.1";
-  in
+{
+  lib,
+  stdenv,
+  fetchurl,
+  unpackdmg,
+  ungoogled-chromium,
+}:
+if (!stdenv.isDarwin)
+then ungoogled-chromium
+else let
+  version = "139.0.7258.138-1.1";
+in
   stdenv.mkDerivation {
     pname = "ungoogled-chromium";
     inherit version;
@@ -15,7 +19,7 @@ else
       sha256 = "sha256-f7gTkcyhdORJSdZ0t0OH+rdFlfJKdi+9XERAZmvO6us=";
     };
 
-    buildInputs = [ unpackdmg ];
+    buildInputs = [unpackdmg];
     installPhase = ''
       mkdir -p "$out/Applications"
       cp -R 'Chromium.app' "$out/Applications/"

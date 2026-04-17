@@ -1,12 +1,17 @@
-{ lib, stdenv, mullvad-vpn, fetchurl, xar, cpio }:
-
-if (!stdenv.isDarwin) then
-  mullvad-vpn
-else
-  let
-    pname = "mullvad-vpn";
-    version = "2025.8";
-  in
+{
+  lib,
+  stdenv,
+  mullvad-vpn,
+  fetchurl,
+  xar,
+  cpio,
+}:
+if (!stdenv.isDarwin)
+then mullvad-vpn
+else let
+  pname = "mullvad-vpn";
+  version = "2025.8";
+in
   stdenv.mkDerivation {
     inherit pname version;
 
@@ -15,7 +20,7 @@ else
       sha256 = "sha256-Gl/jcQGSNhG7PxCBGQ2wI7ZsPUSw3InkwhqfGjvH3MQ=";
     };
 
-    nativeBuildInputs = [ xar cpio ];
+    nativeBuildInputs = [xar cpio];
     dontFixup = true; # Don't break code signing. Check with `codesign -dv ./result/Applications/Mullvad\ VPN.app`
 
     unpackPhase = ''
@@ -49,7 +54,7 @@ else
       homepage = "https://github.com/mullvad/mullvadvpn-app";
       description = "Client for Mullvad VPN";
       changelog = "https://github.com/mullvad/mullvadvpn-app/blob/${version}/CHANGELOG.md";
-      sourceProvenance = [ lib.sourceTypes.binaryNativeCode ];
+      sourceProvenance = [lib.sourceTypes.binaryNativeCode];
       license = lib.licenses.gpl3Only;
     };
   }

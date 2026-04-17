@@ -1,17 +1,22 @@
-{ lib, stdenv, fetchurl, zmx }:
-
-if !stdenv.isDarwin then
-  zmx.packages.${stdenv.hostPlatform.system}.default
-else
-  let
-    version = "0.5.0";
-    platform = if stdenv.hostPlatform.isAarch64 then "aarch64" else "x86_64";
-    sha256 =
-      if stdenv.hostPlatform.isAarch64 then
-        "sha256-O5N58P8M8Qf3+HBI0sRfb76r7ViNZ2rYasIYvtko0Qc="
-      else
-        "sha256-d27kjv1Q0L2Xtm+ktDA6JmKVwKDhYwRbc6xmJo1XgbY=";
-  in
+{
+  lib,
+  stdenv,
+  fetchurl,
+  zmx,
+}:
+if !stdenv.isDarwin
+then zmx.packages.${stdenv.hostPlatform.system}.default
+else let
+  version = "0.5.0";
+  platform =
+    if stdenv.hostPlatform.isAarch64
+    then "aarch64"
+    else "x86_64";
+  sha256 =
+    if stdenv.hostPlatform.isAarch64
+    then "sha256-O5N58P8M8Qf3+HBI0sRfb76r7ViNZ2rYasIYvtko0Qc="
+    else "sha256-d27kjv1Q0L2Xtm+ktDA6JmKVwKDhYwRbc6xmJo1XgbY=";
+in
   stdenv.mkDerivation {
     pname = "zmx";
     inherit version;
@@ -38,6 +43,6 @@ else
       license = lib.licenses.mit;
       mainProgram = "zmx";
       platforms = lib.platforms.darwin;
-      sourceProvenance = [ lib.sourceTypes.binaryNativeCode ];
+      sourceProvenance = [lib.sourceTypes.binaryNativeCode];
     };
   }
