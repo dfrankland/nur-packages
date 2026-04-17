@@ -16,6 +16,7 @@ in {
   github-desktop = pkgs.callPackage ./pkgs/github-desktop {};
   headscale-ui = pkgs.callPackage ./pkgs/headscale-ui {};
   loom = pkgs.callPackage ./pkgs/loom {inherit unpackdmg;};
+  macthrottle = pkgs.callPackage ./pkgs/macthrottle {};
   mullvad-vpn = pkgs.callPackage ./pkgs/mullvad-vpn {};
   qmk_toolbox = pkgs.callPackage ./pkgs/qmk_toolbox {};
   rippling = pkgs.callPackage ./pkgs/rippling {};
