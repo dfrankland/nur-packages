@@ -11,6 +11,7 @@ in {
   docker-desktop = pkgs.callPackage ./pkgs/docker-desktop {inherit unpackdmg;};
   drata-agent = pkgs.callPackage ./pkgs/drata-agent {inherit unpackdmg;};
   epilogue-playback = pkgs.callPackage ./pkgs/epilogue-playback {inherit unpackdmg;};
+  ferdium = pkgs.callPackage ./pkgs/ferdium {};
   # TODO: Complete this package so it builds
   # gbdk-2020 = pkgs.callPackage ./pkgs/gbdk-2020 { };
   github-desktop = pkgs.callPackage ./pkgs/github-desktop {};
