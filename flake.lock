@@ -129,11 +129,11 @@
         "zig2nix": "zig2nix"
       },
       "locked": {
-        "lastModified": 1776398285,
-        "narHash": "sha256-5kVVQybURBflE8mWH76Fo5AonOH9fiAN5aVZkgm+mNw=",
+        "lastModified": 1777260123,
+        "narHash": "sha256-NmLRu7SZqOQSOEfivWncii3N5AhO1U9W2A99bFpoTJ4=",
         "owner": "neurosnap",
         "repo": "zmx",
-        "rev": "81243b97b548e09bd27105fe9e53c5d1e6b8ccbe",
+        "rev": "5389d30bad1e6500fb8ef9960f3d9d794d814eb5",
         "type": "github"
       },
       "original": {
