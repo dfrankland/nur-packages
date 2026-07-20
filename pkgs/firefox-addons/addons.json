@@ -1,5 +1,61 @@
 [
   {
     "slug": "trunk-for-github"
+  },
+  {
+    "slug": "2fas-two-factor-authentication"
+  },
+  {
+    "slug": "multi-account-containers"
+  },
+  {
+    "pname": "onepassword-password-manager",
+    "slug": "1password-x-password-manager",
+    "license": {
+      "tag": "custom",
+      "shortName": "1pwd",
+      "fullName": "Service Agreement for 1Password users and customers",
+      "url": "https://1password.com/legal/terms-of-service/",
+      "free": false
+    }
+  },
+  {
+    "slug": "react-devtools"
+  },
+  {
+    "slug": "reduxdevtools"
+  },
+  {
+    "slug": "refined-github-",
+    "pname": "refined-github"
+  },
+  {
+    "slug": "rust-search-extension"
+  },
+  {
+    "slug": "search_by_image",
+    "pname": "search-by-image"
+  },
+  {
+    "slug": "sourcegraph-for-firefox",
+    "pname": "sourcegraph"
+  },
+  {
+    "slug": "tabliss"
+  },
+  {
+    "slug": "ublock-origin"
+  },
+  {
+    "slug": "wayback-machine_new",
+    "pname": "wayback-machine"
+  },
+  {
+    "slug": "view-page-archive",
+    "pname": "web-archives",
+    "license": {
+      "tag": "predefined",
+      "shortName": "gpl3Only"
+    }
   }
 ]
