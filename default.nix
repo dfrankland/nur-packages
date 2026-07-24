@@ -1,7 +1,4 @@
-{
-  pkgs ? import <nixpkgs> {},
-  zmx ? null,
-}: let
+{pkgs ? import <nixpkgs> {}}: let
   unpackdmg = pkgs.callPackage ./pkgs/unpackdmg {};
   lib = import ./lib {inherit pkgs;};
   modules = import ./modules;
@@ -37,5 +34,4 @@ in
     wavebox = pkgs.callPackage ./pkgs/wavebox {};
     wezterm = pkgs.callPackage ./pkgs/wezterm {};
     wifiman-desktop = pkgs.callPackage ./pkgs/wifiman-desktop {};
-    zmx = pkgs.callPackage ./pkgs/zmx {inherit zmx;};
   }

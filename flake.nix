@@ -3,7 +3,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    zmx.url = "github:neurosnap/zmx";
   };
   outputs = inputs @ {
     flake-parts,
@@ -34,7 +33,6 @@
 
         packages = import ./default.nix {
           inherit pkgs;
-          zmx = inputs.zmx;
         };
 
         formatter = pkgs.alejandra;
