@@ -19,10 +19,8 @@ else
 
       src = fetchzip {
         url = "https://updates.signal.org/desktop/signal-desktop-mac-arm64-${version}.zip";
-        sha256 = "sha256-FExYa0PpB5jmhtOznqOaY2XO8ogTqpcvDiSIHSvvi3o=";
+        sha256 = "sha256-T7og6DAfiWMlT3Ko5U86iuX36+5W+BSd8lZiLhM1WFU=";
       };
-
-      sourceRoot = app;
 
       dontFixup = true; # Don't break code signing. Check with `codesign -dv ./result/Applications/Signal.app`
       installPhase = ''
