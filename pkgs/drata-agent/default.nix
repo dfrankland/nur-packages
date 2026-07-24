@@ -6,7 +6,7 @@
   writeScript,
 }: let
   app = "Drata Agent.app";
-  version = "3.8.0";
+  version = "3.9.0";
 in
   stdenv.mkDerivation {
     pname = "drata-agent";
@@ -14,7 +14,7 @@ in
 
     src = fetchurl {
       url = "https://github.com/drata/agent-releases/releases/download/${version}/Drata-Agent-mac.dmg";
-      sha256 = "sha256-SGodojTQBZraDClHwEHpUSD4lTTgcLHXPORQPSrfYi0=";
+      sha256 = "sha256-GjEscTsra92UY4EhNF2xTDOQiaaGsgjmhLL1o9PS7fg=";
     };
 
     buildInputs = [unpackdmg];

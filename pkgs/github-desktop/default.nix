@@ -15,9 +15,9 @@ else
     app = "GitHub Desktop.app";
     # The download path is keyed by "<version>-<build>", which is exactly what
     # the Homebrew cask reports as its version, so we pin the whole string.
-    version = "3.5.2-14087268";
+    version = "3.6.3-931da4a1";
     cpu = "arm64";
-    sha256 = "sha256-j9sF89i6CfeYFGhg6+NFldLaKr0OK67IH/rOAHAc/nY=";
+    sha256 = "sha256-M7IL5xtPuErwT5WqBOfjUaoUogFxQpFSXgi8h77joho=";
   in
     stdenv.mkDerivation {
       pname = "github-desktop";

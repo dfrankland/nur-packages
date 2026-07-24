@@ -246,10 +246,10 @@
   };
   "trunk-for-github" = buildMozillaXpiAddon {
     pname = "trunk-for-github";
-    version = "0.15.0";
+    version = "0.15.3";
     addonId = "trunk-github@trunk.io";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4891014/trunk_for_github-0.15.0.xpi";
-    sha256 = "9a9aeec9019f8e0a76c1e22557aceded3a792444c27adc4f375829c64eb547ef";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4913605/trunk_for_github-0.15.3.xpi";
+    sha256 = "ce0319945961d444d567c1d71321b8e3f94a24761809e2ed46d7a17e8edcf831";
     meta = with lib; {
       homepage = "https://trunk.io";
       description = "Adds Trunk-focused functionality and UI improvements to GitHub.";

@@ -11,14 +11,14 @@ if (!stdenv.isDarwin)
 then mullvad-vpn
 else let
   pname = "mullvad-vpn";
-  version = "2025.8";
+  version = "2026.3";
 in
   stdenv.mkDerivation {
     inherit pname version;
 
     src = fetchurl {
       url = "https://github.com/mullvad/mullvadvpn-app/releases/download/${version}/MullvadVPN-${version}.pkg";
-      sha256 = "sha256-Gl/jcQGSNhG7PxCBGQ2wI7ZsPUSw3InkwhqfGjvH3MQ=";
+      sha256 = "sha256-Zi3GfkLqqRW1lMDmjT6Ekn9y94TVoHyahOmWyjWL9iw=";
     };
 
     nativeBuildInputs = [xar cpio];
@@ -51,13 +51,20 @@ in
       runHook postInstall
     '';
 
-    # Releases are published on GitHub (mullvad/mullvadvpn-app); nix-update reads
-    # the latest tag from there.
+    # The mullvad/mullvadvpn-app repo also hosts Android, installer-downloader,
+    # and throwaway `test-*` tags, and the desktop release feed is not the top of
+    # releases.atom — so we can't let nix-update pick the tag. Instead ask the
+    # GitHub API for the newest non-prerelease tag shaped like the desktop
+    # versions (`YYYY.N`) and hand that to nix-update.
     passthru.updateScript = writeScript "update-mullvad-vpn" ''
       #!/usr/bin/env nix-shell
-      #!nix-shell -i bash -p nix-update
+      #!nix-shell -i bash -p nix-update curl jq
       set -euo pipefail
-      nix-update --flake mullvad-vpn
+      version="$(curl -fsSL https://api.github.com/repos/mullvad/mullvadvpn-app/releases?per_page=100 \
+        | jq -r 'map(select(.prerelease == false and .draft == false)
+                     | .tag_name | select(test("^[0-9]{4}\\.[0-9]+$")))
+                 | first')"
+      nix-update --flake mullvad-vpn --version "$version"
     '';
 
     meta = {

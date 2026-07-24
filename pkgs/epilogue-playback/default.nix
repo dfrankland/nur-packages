@@ -8,10 +8,10 @@
 }:
 # https://formulae.brew.sh/api/cask/epilogue-playback.json
 let
-  version = "1.8.0";
+  version = "1.10.0";
   urlArch =
     if (stdenv.isDarwin)
-    then "mac"
+    then "macos"
     else "linux";
   urlFile =
     if (stdenv.isDarwin)
@@ -21,13 +21,13 @@ let
     else "Playback.AppImage";
   sha256 =
     if (stdenv.isDarwin)
-    then "sha256-qK1+rLvsrZFZrwyfdtDLqug55jPjle+kvrx+0IxQvNk="
+    then "sha256-+iCAREQqY0GgTBc1TK8BiGchfObLNRgMXsXw8La0tl4="
     else if (stdenv.isAarch64)
     then lib.fakeSha256
     else lib.fakeSha256;
   pname = "epilogue-playback";
   src = fetchurl {
-    url = "https://epilogue.nyc3.cdn.digitaloceanspaces.com/releases/software/Playback/version/${version}/release/${urlArch}/${urlFile}";
+    url = "https://releases.epilogue.co/desktop/playback/${version}/release/${urlArch}/${urlFile}";
     inherit sha256;
   };
   meta = {

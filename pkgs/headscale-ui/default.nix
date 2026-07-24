@@ -8,7 +8,7 @@
 }:
 # https://github.com/gurucomputing/headscale-ui/releases
 let
-  version = "2025.07.12";
+  version = "2026.03.17";
   pname = "headscale-ui";
 in
   buildNpmPackage rec {
@@ -18,10 +18,10 @@ in
       owner = "gurucomputing";
       repo = pname;
       rev = version;
-      sha256 = "sha256-8hn7F3dw+kIHn9tq+BpEOisQElH6QwYg6n3knz/7r1c=";
+      sha256 = "sha256-JR+VLwXqMKACWB+4AIgWLIpZh0xtU9uCsiskra71BHQ=";
     };
 
-    npmDepsHash = "sha256-r8MuY7yhjek2SZyJCv5Xhk9dJE2VgKx7RTdOBr0Bji4=";
+    npmDepsHash = "sha256-vtMRi81GCaZDnfyZG5Eth/kPKQeIAsxhqKcc74ij7lg=";
 
     nativeBuildInputs = [makeWrapper];
 

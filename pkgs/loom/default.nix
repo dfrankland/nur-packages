@@ -8,9 +8,9 @@
 # https://formulae.brew.sh/api/cask/loom.json
 let
   app = "Loom.app";
-  version = "0.332.0";
+  version = "0.363.0";
   cpu = "-arm64";
-  sha256 = "sha256-2tXUiP8qjleW2KIsg30IV+Xu38a+xsPIb1qWpIW9aJg=";
+  sha256 = "sha256-mWdp6PGfk1bk85Bd5Wy830pEpxHBp79xTHB3tdvFe6s=";
 in
   stdenv.mkDerivation {
     pname = "loom";

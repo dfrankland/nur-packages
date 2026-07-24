@@ -12,7 +12,7 @@ else
   # https://formulae.brew.sh/api/cask/signal.json
   let
     app = "Signal.app";
-    version = "7.68.0";
+    version = "8.20.0";
   in
     stdenv.mkDerivation {
       pname = "signal-desktop";
@@ -20,7 +20,7 @@ else
 
       src = fetchurl {
         url = "https://updates.signal.org/desktop/signal-desktop-mac-universal-${version}.dmg";
-        sha256 = "sha256-qnNSiUD0DmPPg7bfGmKZXh+TNtytVNzZv0b6fokhAXs=";
+        sha256 = "sha256-FExYa0PpB5jmhtOznqOaY2XO8ogTqpcvDiSIHSvvi3o=";
       };
 
       sourceRoot = app;

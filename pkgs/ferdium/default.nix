@@ -9,7 +9,7 @@ if (!stdenv.isDarwin)
 then ferdium
 else let
   app = "Ferdium.app";
-  version = "7.1.1";
+  version = "7.1.2";
 in
   stdenv.mkDerivation {
     pname = "ferdium";
@@ -17,7 +17,7 @@ in
 
     src = fetchzip {
       url = "https://github.com/ferdium/ferdium-app/releases/download/v${version}/Ferdium-mac-bundle-${version}-arm64.zip";
-      sha256 = "sha256-xPtc5YuIyYbilkJCETYWfEtftFylThAzE/1wWmgncXI=";
+      sha256 = "sha256-tiRTZ9KMj7pS+QSWF3pJVvIcsw+8AQ4CpNPWpGqbWGE=";
       stripRoot = false;
     };
 

@@ -8,15 +8,15 @@
 # https://formulae.brew.sh/api/cask/rippling.json
 let
   app = "Rippling.app";
-  version = "3.6.44";
+  version = "3.6.52";
 in
   stdenv.mkDerivation {
     pname = "rippling";
     inherit version;
 
     src = fetchurl {
-      url = "https://hardware-cdn.rippling.com/device_release/electron-installer/${version}/macos/Rippling.dmg";
-      sha256 = "sha256-k0Ua2jLhxxq3AbCazQen+l2tLnDF2O2Imq9XMdDu/CE=";
+      url = "https://public-assets.ripplingcdn.com/global/hardware-public/device_release/electron-installer/${version}/macos/Rippling.dmg";
+      sha256 = "sha256-hioUam2VOCIkx+bRqGMXyMYdeNRAHFvA7oWZkY9EzQ0=";
     };
 
     sourceRoot = app;

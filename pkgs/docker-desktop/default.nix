@@ -8,8 +8,8 @@
   writeScript,
 }: let
   # get the lastest version from https://docs.docker.com/desktop/release-notes/
-  version = "4.53.0";
-  rev = "211793";
+  version = "4.83.0";
+  rev = "234302";
   platform =
     if (stdenv.isDarwin)
     then "mac"
@@ -20,8 +20,8 @@
     else "amd64";
   sha256 =
     if (platform == "mac" && cpu == "arm64")
-    then "45b220c6bdcce748d94d83271b607a684a918c1b24eb2fc2b8807fe798912834"
-    else "3a4e2cebabac0971728e07c01d2919f5931d6f7af2f8b7af5ec6cd45778e4c68";
+    then "6d0798ee8b93bbb742e2eac5e6bab9aa95021498f73b95b9e4e9c6c6b6a71bf5"
+    else "62d02dfec99043c7d972c1af9b4012e319b94ca1f1f40ac4d89b199985ed4f46";
   file =
     if (stdenv.isDarwin)
     then "Docker.dmg"
