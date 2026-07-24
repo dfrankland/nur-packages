@@ -24,7 +24,7 @@ in
     mullvad-vpn = pkgs.callPackage ./pkgs/mullvad-vpn {};
     qmk_toolbox = pkgs.callPackage ./pkgs/qmk_toolbox {};
     rippling = pkgs.callPackage ./pkgs/rippling {};
-    signal-desktop = pkgs.callPackage ./pkgs/signal-desktop {inherit unpackdmg;};
+    signal-desktop = pkgs.callPackage ./pkgs/signal-desktop {};
     tailscale = pkgs.callPackage ./pkgs/tailscale {};
     trunk = pkgs.callPackage ./pkgs/trunk {};
     ungoogled-chromium = pkgs.callPackage ./pkgs/ungoogled-chromium {inherit unpackdmg;};

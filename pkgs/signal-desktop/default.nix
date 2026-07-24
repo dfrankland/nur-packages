@@ -1,8 +1,7 @@
 {
   lib,
   stdenv,
-  fetchurl,
-  unpackdmg,
+  fetchzip,
   signal-desktop,
   writeScript,
 }:
@@ -18,22 +17,21 @@ else
       pname = "signal-desktop";
       inherit version;
 
-      src = fetchurl {
-        url = "https://updates.signal.org/desktop/signal-desktop-mac-universal-${version}.dmg";
+      src = fetchzip {
+        url = "https://updates.signal.org/desktop/signal-desktop-mac-arm64-${version}.zip";
         sha256 = "sha256-FExYa0PpB5jmhtOznqOaY2XO8ogTqpcvDiSIHSvvi3o=";
       };
 
       sourceRoot = app;
 
       dontFixup = true; # Don't break code signing. Check with `codesign -dv ./result/Applications/Signal.app`
-      buildInputs = [unpackdmg];
       installPhase = ''
         mkdir -p "$out/Applications/${app}"
         cp -R . "$out/Applications/${app}"
       '';
 
       # There is no upstream version feed, so track the Homebrew cask; nix-update
-      # then refetches the dmg to update the hash.
+      # then refetches the zip to update the hash.
       passthru.updateScript = writeScript "update-signal-desktop" ''
         #!/usr/bin/env nix-shell
         #!nix-shell -i bash -p nix-update curl jq
