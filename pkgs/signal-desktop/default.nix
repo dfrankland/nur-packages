@@ -4,6 +4,7 @@
   fetchurl,
   unpackdmg,
   signal-desktop,
+  writeScript,
 }:
 if (!stdenv.isDarwin)
 then signal-desktop
@@ -29,6 +30,16 @@ else
       installPhase = ''
         mkdir -p "$out/Applications/${app}"
         cp -R . "$out/Applications/${app}"
+      '';
+
+      # There is no upstream version feed, so track the Homebrew cask; nix-update
+      # then refetches the dmg to update the hash.
+      passthru.updateScript = writeScript "update-signal-desktop" ''
+        #!/usr/bin/env nix-shell
+        #!nix-shell -i bash -p nix-update curl jq
+        set -euo pipefail
+        version="$(curl -fsSL https://formulae.brew.sh/api/cask/signal.json | jq -r .version)"
+        nix-update --flake signal-desktop --version "$version"
       '';
 
       meta = {

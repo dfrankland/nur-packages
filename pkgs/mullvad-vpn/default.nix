@@ -5,6 +5,7 @@
   fetchurl,
   xar,
   cpio,
+  writeScript,
 }:
 if (!stdenv.isDarwin)
 then mullvad-vpn
@@ -48,6 +49,15 @@ in
       ln -s "$out/Applications/Mullvad VPN.app/Contents/Resources" $out/bin
 
       runHook postInstall
+    '';
+
+    # Releases are published on GitHub (mullvad/mullvadvpn-app); nix-update reads
+    # the latest tag from there.
+    passthru.updateScript = writeScript "update-mullvad-vpn" ''
+      #!/usr/bin/env nix-shell
+      #!nix-shell -i bash -p nix-update
+      set -euo pipefail
+      nix-update --flake mullvad-vpn
     '';
 
     meta = {

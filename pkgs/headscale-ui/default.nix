@@ -4,6 +4,7 @@
   caddy,
   makeWrapper,
   buildNpmPackage,
+  writeScript,
 }:
 # https://github.com/gurucomputing/headscale-ui/releases
 let
@@ -48,6 +49,15 @@ in
         --add-flags "run --adapter caddyfile --config $out/Caddyfile"
 
       runHook postInstall
+    '';
+
+    # Releases are published on GitHub (gurucomputing/headscale-ui); nix-update
+    # reads the latest tag from there and also refreshes `npmDepsHash`.
+    passthru.updateScript = writeScript "update-headscale-ui" ''
+      #!/usr/bin/env nix-shell
+      #!nix-shell -i bash -p nix-update
+      set -euo pipefail
+      nix-update --flake headscale-ui
     '';
 
     meta = {

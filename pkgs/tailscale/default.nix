@@ -4,6 +4,7 @@
   fetchzip,
   tailscale,
   makeWrapper,
+  writeScript,
 }:
 if (!stdenv.isDarwin)
 then tailscale
@@ -30,6 +31,16 @@ else
         makeWrapper \
           "$out/Applications/${app}/Contents/MacOS/Tailscale" \
           "$out/bin/tailscale"
+      '';
+
+      # The stable channel publishes its current version as JSON; nix-update
+      # then refetches the macOS zip to update the hash.
+      passthru.updateScript = writeScript "update-tailscale" ''
+        #!/usr/bin/env nix-shell
+        #!nix-shell -i bash -p nix-update curl jq
+        set -euo pipefail
+        version="$(curl -fsSL 'https://pkgs.tailscale.com/stable/?mode=json' | jq -r .Version)"
+        nix-update --flake tailscale --version "$version"
       '';
 
       meta = {

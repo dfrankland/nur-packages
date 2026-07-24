@@ -4,6 +4,7 @@
   fetchurl,
   unpackdmg,
   ungoogled-chromium,
+  writeScript,
 }:
 if (!stdenv.isDarwin)
 then ungoogled-chromium
@@ -23,6 +24,15 @@ in
     installPhase = ''
       mkdir -p "$out/Applications"
       cp -R 'Chromium.app' "$out/Applications/"
+    '';
+
+    # Releases are published on GitHub (ungoogled-software/ungoogled-chromium-macos);
+    # nix-update reads the latest tag from there.
+    passthru.updateScript = writeScript "update-ungoogled-chromium" ''
+      #!/usr/bin/env nix-shell
+      #!nix-shell -i bash -p nix-update
+      set -euo pipefail
+      nix-update --flake ungoogled-chromium
     '';
 
     meta = {

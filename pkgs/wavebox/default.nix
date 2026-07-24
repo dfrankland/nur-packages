@@ -138,6 +138,32 @@
       gtk3
       gtk4
     ];
+
+  # The stable channel exposes a per-platform `latest.json`. The macOS build is
+  # a fetchzip, so nix-update rebuilds its hash; the Linux build is a plain deb
+  # whose fetchurl hash we compute directly. One script keeps both in sync
+  # regardless of which system it runs on.
+  updateScript = writeScript "update-wavebox" ''
+    #!/usr/bin/env nix-shell
+    #!nix-shell -i bash -p nix-update curl jq gnused gnugrep coreutils
+    set -euo pipefail
+    file=pkgs/wavebox/default.nix
+
+    darwin_version="$(curl -fsSL https://download.wavebox.app/stable/macarm64/latest.json \
+      | jq -r '.sparkleUpdateUrl | capture("Wavebox_(?<v>[0-9.]+)\\.zip").v')"
+    nix-update --flake wavebox --version "$darwin_version"
+
+    linux_deb="$(curl -fsSL https://download.wavebox.app/stable/linux/latest.json | jq -r '.urls.deb')"
+    linux_version="$(printf '%s' "$linux_deb" | sed -E 's#.*/wavebox_([0-9.-]+)_amd64\.deb#\1#')"
+    linux_sri="$(nix hash to-sri --type sha256 "$(nix-prefetch-url "$linux_deb")")"
+    # The macOS (fetchzip) hash is the first SRI in the file; the Linux deb hash
+    # is the second.
+    old_linux="$(grep -oE 'sha256-[A-Za-z0-9+/]{43}=' "$file" | sed -n 2p)"
+    sed -i \
+      -e "s#linuxVersion = \"[^\"]*\"#linuxVersion = \"$linux_version\"#" \
+      -e "s#$old_linux#$linux_sri#" \
+      "$file"
+  '';
 in
   if stdenv.isDarwin
   then let
@@ -160,6 +186,8 @@ in
         mkdir -p "$out/Applications"
         cp -R . "$out/Applications/"
       '';
+
+      passthru.updateScript = updateScript;
 
       meta = {
         description = "Wavebox messaging application";
@@ -245,12 +273,7 @@ in
         runHook postInstall
       '';
 
-      passthru.updateScript = writeScript "update-wavebox.sh" ''
-        #!/usr/bin/env nix-shell
-        #!nix-shell -i bash -p nix-update curl jq
-        version=$(curl "https://download.wavebox.app/stable/linux/latest.json" | jq --raw-output '.["urls"]["deb"] | match("https://download.wavebox.app/stable/linux/deb/amd64/wavebox_(.+)_amd64.deb").captures[0]["string"]')
-        nix-update wavebox --version "$version"
-      '';
+      passthru.updateScript = updateScript;
 
       meta = {
         description = "Wavebox Productivity Browser";

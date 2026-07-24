@@ -4,6 +4,7 @@
   fetchurl,
   xar,
   cpio,
+  writeScript,
 }:
 # https://formulae.brew.sh/api/cask/wifiman.json
 let
@@ -64,6 +65,17 @@ in
     # unpack `WiFiman Desktop.app/Contents/Resources/app.asar`, updating some JS
     # file(s), and repacking it again.
     # patchPhase = "";
+
+    # There is no upstream version feed, so track the Homebrew cask; nix-update
+    # then refetches the (aarch64-darwin) pkg to update the hash. The Linux hash
+    # is still a TODO placeholder and must be filled in by hand.
+    passthru.updateScript = writeScript "update-wifiman-desktop" ''
+      #!/usr/bin/env nix-shell
+      #!nix-shell -i bash -p nix-update curl jq
+      set -euo pipefail
+      version="$(curl -fsSL https://formulae.brew.sh/api/cask/wifiman.json | jq -r .version)"
+      nix-update --flake wifiman-desktop --version "$version"
+    '';
 
     meta = {
       homepage = "https://ui.com/download/app/wifiman-desktop";

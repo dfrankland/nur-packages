@@ -3,6 +3,7 @@
   stdenv,
   fetchzip,
   undmg,
+  writeScript,
 }: let
   app = "QMK Toolbox.app";
   version = "0.3.3";
@@ -20,6 +21,15 @@ in
     installPhase = ''
       mkdir -p "$out/Applications/${app}"
       cp -R . "$out/Applications/${app}"
+    '';
+
+    # Releases are published on GitHub (qmk/qmk_toolbox); nix-update reads the
+    # latest tag from there.
+    passthru.updateScript = writeScript "update-qmk_toolbox" ''
+      #!/usr/bin/env nix-shell
+      #!nix-shell -i bash -p nix-update
+      set -euo pipefail
+      nix-update --flake qmk_toolbox
     '';
 
     meta = {

@@ -3,6 +3,7 @@
   stdenv,
   fetchzip,
   chromium,
+  writeScript,
 }:
 if (!stdenv.isDarwin)
 then chromium
@@ -32,6 +33,17 @@ else
       installPhase = ''
         mkdir -p "$out/Applications"
         cp -R 'Chromium.app' "$out/Applications/"
+      '';
+
+      # The "version" is the latest snapshot build number, published as the
+      # `LAST_CHANGE` marker for the Mac_Arm snapshot channel; nix-update then
+      # refetches chrome-mac.zip to update the hash.
+      passthru.updateScript = writeScript "update-chromium" ''
+        #!/usr/bin/env nix-shell
+        #!nix-shell -i bash -p nix-update curl
+        set -euo pipefail
+        version="$(curl -fsSL https://commondatastorage.googleapis.com/chromium-browser-snapshots/Mac_Arm/LAST_CHANGE)"
+        nix-update --flake chromium --version "$version"
       '';
 
       meta = {

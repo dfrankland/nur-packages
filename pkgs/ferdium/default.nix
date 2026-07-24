@@ -3,6 +3,7 @@
   stdenv,
   fetchzip,
   ferdium,
+  writeScript,
 }:
 if (!stdenv.isDarwin)
 then ferdium
@@ -24,6 +25,15 @@ in
     installPhase = ''
       mkdir -p "$out/Applications"
       cp -R "${app}" "$out/Applications/"
+    '';
+
+    # Releases are published on GitHub (ferdium/ferdium-app); nix-update reads the
+    # latest tag from there (stripping the leading `v`).
+    passthru.updateScript = writeScript "update-ferdium" ''
+      #!/usr/bin/env nix-shell
+      #!nix-shell -i bash -p nix-update
+      set -euo pipefail
+      nix-update --flake ferdium
     '';
 
     meta = {

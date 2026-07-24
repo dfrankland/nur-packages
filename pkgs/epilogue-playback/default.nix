@@ -4,6 +4,7 @@
   fetchurl,
   unpackdmg,
   appimageTools,
+  writeScript,
 }:
 # https://formulae.brew.sh/api/cask/epilogue-playback.json
 let
@@ -35,6 +36,16 @@ let
     license = lib.licenses.unfree;
     platforms = lib.platforms.unix;
   };
+  # There is no upstream version feed, so track the Homebrew cask; nix-update
+  # then refetches the (current system's) artifact to update the hash. The Linux
+  # hashes are still fakeSha256 placeholders and must be filled in by hand.
+  updateScript = writeScript "update-epilogue-playback" ''
+    #!/usr/bin/env nix-shell
+    #!nix-shell -i bash -p nix-update curl jq
+    set -euo pipefail
+    version="$(curl -fsSL https://formulae.brew.sh/api/cask/epilogue-playback.json | jq -r .version)"
+    nix-update --flake epilogue-playback --version "$version"
+  '';
 in
   if (stdenv.isDarwin)
   then
@@ -42,6 +53,7 @@ in
     {
       inherit pname version src meta;
 
+      passthru = {inherit updateScript;};
       buildInputs = [unpackdmg];
       installPhase = ''
         mkdir -p "$out/Applications"
@@ -51,4 +63,5 @@ in
   else
     appimageTools.wrapType2 {
       inherit pname version src meta;
+      passthru = {inherit updateScript;};
     }

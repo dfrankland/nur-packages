@@ -2,6 +2,7 @@
   lib,
   stdenv,
   fetchzip,
+  writeScript,
 }: let
   app = "MacThrottle.app";
   asset = "MacThrottle-${version}.zip";
@@ -21,6 +22,15 @@ in
     installPhase = ''
       mkdir -p "$out/Applications"
       cp -R "${app}" "$out/Applications/"
+    '';
+
+    # Releases are published on GitHub (angristan/MacThrottle); nix-update reads
+    # the latest tag from there.
+    passthru.updateScript = writeScript "update-macthrottle" ''
+      #!/usr/bin/env nix-shell
+      #!nix-shell -i bash -p nix-update
+      set -euo pipefail
+      nix-update --flake macthrottle
     '';
 
     meta = {

@@ -5,6 +5,7 @@
   unpackdmg,
   dpkg,
   makeWrapper,
+  writeScript,
 }: let
   # get the lastest version from https://docs.docker.com/desktop/release-notes/
   version = "4.53.0";
@@ -59,6 +60,33 @@ in
       else ''
         # TODO!
       '';
+
+    # The macOS Sparkle appcast reports both the marketing version
+    # (shortVersionString) and the build number (`rev`) used in the download
+    # URLs; the same build number serves the Linux deb. Both artifacts are
+    # plain files, so their fetchurl hashes are just `sha256sum` of the
+    # downloads (hex, matching how they are pinned here).
+    passthru.updateScript = writeScript "update-docker-desktop" ''
+      #!/usr/bin/env nix-shell
+      #!nix-shell -i bash -p curl gnused coreutils
+      set -euo pipefail
+      file=pkgs/docker-desktop/default.nix
+      appcast="$(curl -fsSL https://desktop.docker.com/mac/main/arm64/appcast.xml)"
+      version="$(printf '%s' "$appcast" | grep -oE 'sparkle:shortVersionString="[^"]*"' | head -1 | sed -E 's/.*"([^"]*)".*/\1/')"
+      rev="$(printf '%s' "$appcast" | grep -oE 'sparkle:version="[^"]*"' | head -1 | sed -E 's/.*"([^"]*)".*/\1/')"
+      mac_path="$(nix-prefetch-url --print-path "https://desktop.docker.com/mac/main/arm64/$rev/Docker.dmg" | tail -1)"
+      linux_path="$(nix-prefetch-url --print-path "https://desktop.docker.com/linux/main/amd64/$rev/docker-desktop-amd64.deb" | tail -1)"
+      mac_hash="$(sha256sum "$mac_path" | cut -d' ' -f1)"
+      linux_hash="$(sha256sum "$linux_path" | cut -d' ' -f1)"
+      # Current hashes, in file order: [mac arm64, linux amd64].
+      mapfile -t old < <(grep -oE '[0-9a-f]{64}' "$file")
+      sed -i \
+        -e "s/version = \"[^\"]*\"/version = \"$version\"/" \
+        -e "s/rev = \"[^\"]*\"/rev = \"$rev\"/" \
+        -e "s/''${old[0]}/$mac_hash/" \
+        -e "s/''${old[1]}/$linux_hash/" \
+        "$file"
+    '';
 
     meta = with lib; {
       homepage = "https://www.docker.com/products/docker-desktop/";

@@ -4,6 +4,7 @@
   makeWrapper,
   lib,
   stdenv,
+  writeScript,
 }:
 with lib; let
   # curl -sL 'https://trunk.io/releases/latest'
@@ -40,6 +41,30 @@ in
     installPhase = ''
       mkdir -p $out/bin
       cp ./trunk $out/bin/
+    '';
+
+    # `https://trunk.io/releases/latest` reports the current version together
+    # with the sha256 (hex) of every platform tarball, so we can patch the
+    # version and all three pinned hashes without refetching anything.
+    passthru.updateScript = writeScript "update-trunk" ''
+      #!/usr/bin/env nix-shell
+      #!nix-shell -i bash -p curl gnused
+      set -euo pipefail
+      file=pkgs/trunk/default.nix
+      latest="$(curl -fsSL https://trunk.io/releases/latest)"
+      version="$(printf '%s\n' "$latest" | sed -n 's/^version: //p')"
+      darwin_arm64="$(printf '%s\n' "$latest" | sed -n 's/^[[:space:]]*darwin_arm64: //p')"
+      linux_x86_64="$(printf '%s\n' "$latest" | sed -n 's/^[[:space:]]*linux_x86_64: //p')"
+      linux_arm64="$(printf '%s\n' "$latest" | sed -n 's/^[[:space:]]*linux_arm64: //p')"
+      # Current hashes, in the order they appear in the file:
+      # [darwin_arm64, linux_x86_64, linux_arm64].
+      mapfile -t old < <(grep -oE '[0-9a-f]{64}' "$file")
+      sed -i \
+        -e "s/version = \"[^\"]*\"/version = \"$version\"/" \
+        -e "s/''${old[0]}/$darwin_arm64/" \
+        -e "s/''${old[1]}/$linux_x86_64/" \
+        -e "s/''${old[2]}/$linux_arm64/" \
+        "$file"
     '';
 
     meta = with lib; {

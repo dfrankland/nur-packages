@@ -4,6 +4,7 @@
   fetchzip,
   undmg,
   wezterm,
+  writeScript,
 }:
 if (!stdenv.isDarwin)
 then wezterm
@@ -23,6 +24,15 @@ in
     installPhase = ''
       mkdir -p "$out/Applications/"
       cp -R . "$out/Applications/"
+    '';
+
+    # Releases are published on GitHub (wez/wezterm); nix-update reads the latest
+    # (non-prerelease) tag from there, skipping the `nightly` builds.
+    passthru.updateScript = writeScript "update-wezterm" ''
+      #!/usr/bin/env nix-shell
+      #!nix-shell -i bash -p nix-update
+      set -euo pipefail
+      nix-update --flake wezterm
     '';
 
     meta = {
