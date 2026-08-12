@@ -9,6 +9,11 @@
   url,
   sha256,
   meta,
+  # Extra passthru attributes. The generator never emits this, so defaulting it
+  # keeps the builder's interface exactly what `mozilla-addons-to-nix` produces;
+  # it exists for the hand-maintained self-hosted add-ons, which carry their own
+  # `updateScript` (the generated set is refreshed wholesale instead).
+  passthru ? {},
   ...
 }:
 stdenv.mkDerivation {
@@ -21,7 +26,7 @@ stdenv.mkDerivation {
   preferLocalBuild = true;
   allowSubstitutes = true;
 
-  passthru = {inherit addonId;};
+  passthru = passthru // {inherit addonId;};
 
   buildCommand = ''
     dst="$out/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"

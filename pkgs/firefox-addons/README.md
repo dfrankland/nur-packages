@@ -18,13 +18,17 @@ which is what Firefox and home-manager's
 
 ## Files
 
-- `addons.json` — the source of truth: the list of add-ons to package.
+- `addons.json` — the source of truth for the **AMO-hosted** add-ons.
 - `generated-firefox-addons.nix` — **generated**, do not edit by hand. Produced
   from `addons.json` by `mozilla-addons-to-nix`.
+- `self-hosted-firefox-addons.nix` — hand-maintained; add-ons AMO signs but does
+  not host, which the generator cannot see. See
+  [Self-hosted add-ons](#self-hosted-add-ons).
 - `build-mozilla-xpi-addon.nix` — the builder that turns each entry into a
   derivation. Its name and argument (`buildMozillaXpiAddon`) match what the
   generator emits, so regenerating never requires editing it.
-- `default.nix` — wires the builder to the generated set.
+- `default.nix` — wires the builder to both sets (self-hosted entries win on a
+  name collision).
 
 ## Adding an add-on
 
@@ -59,6 +63,42 @@ which is what Firefox and home-manager's
      ```
 
 3. Regenerate (see below).
+
+## Self-hosted add-ons
+
+Some add-ons are **unlisted**: AMO signs the `.xpi` (automated, no human review)
+but hosts nothing, and the vendor self-distributes it behind an `update_url`
+manifest. `mozilla-addons-to-nix` cannot reach these — an unlisted add-on has no
+AMO listing, so there is no slug for `addons.json`, and its GUID 404s on the
+public AMO API. Adding one to `addons.json` therefore does nothing.
+
+They live in `self-hosted-firefox-addons.nix` instead, using the same
+`buildMozillaXpiAddon` builder (which only wants a `url` and a `sha256`, so it is
+indifferent to where the file comes from). **Keep them out of
+`generated-firefox-addons.nix`** — the generator rewrites that file wholesale and
+a hand-added entry is silently lost on the next regeneration.
+
+Each entry carries its own `passthru.updateScript`, because the whole-set
+regeneration above cannot update it. Refresh one by name:
+
+```console
+$ ./update.sh firefox-addons-trunk-for-github-staging
+```
+
+`update.sh` decides which path a target takes by looking it up in
+`generated-firefox-addons.nix` (`is_generated_addon`), so a name under the
+`firefox-addons-` prefix that is *not* in the generated set runs its own script
+rather than triggering the AMO regeneration.
+
+Current entries:
+
+| Package | Add-on | Pointer |
+| --- | --- | --- |
+| `firefox-addons-trunk-for-github-staging` | Trunk for GitHub (Staging), `trunk-for-github-staging@trunk.io` | `https://trunk.io/releases/browser-extension/staging/updates.json` |
+
+It installs alongside the listed `firefox-addons-trunk-for-github` rather than
+conflicting with it: the staging build ships a different gecko id, so both can be
+enabled in one profile.
 
 ## Updating / regenerating
 

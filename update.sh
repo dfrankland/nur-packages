@@ -36,13 +36,27 @@ if [ -n "$(git status --porcelain -- pkgs 2>/dev/null)" ]; then
   echo "         first so a revert can't discard unrelated work." >&2
 fi
 
+# Does this target belong to the AMO-generated add-on set?
+#
+# Only that set is refreshed by re-running the generator; it has no per-package
+# updateScript. The self-hosted add-ons live under the same `firefox-addons-`
+# prefix but each carries its own updateScript, so matching on the prefix alone
+# would regenerate the AMO set and silently never update them.
+is_generated_addon() {
+  [ "$1" = "firefox-addons" ] && return 0 # the whole-set alias
+  local name="${1#firefox-addons-}"
+  [ "$name" = "$1" ] && return 1 # not an add-on at all
+  grep -q "^  \"${name}\" = buildMozillaXpiAddon" \
+    pkgs/firefox-addons/generated-firefox-addons.nix
+}
+
 # Run one package's update. Return codes:
 #   0  ran successfully, or the package genuinely has no updateScript (skipped)
 #   1  its update script ran and failed  -> caller reverts (may be half-applied)
 #   2  its Nix code failed to evaluate   -> caller reports; nothing ran to revert
 update_one() {
   local pkg="$1" script err
-  if [[ "$pkg" == firefox-addons* ]]; then
+  if is_generated_addon "$pkg"; then
     echo ">>> firefox-addons (regenerating with mozilla-addons-to-nix)"
     (
       cd pkgs/firefox-addons
@@ -108,8 +122,9 @@ for pkg in "${targets[@]}"; do
     continue
   fi
 
-  # The whole firefox-addons set regenerates in one go; only do it once.
-  if [[ "$pkg" == firefox-addons* ]]; then
+  # The generated add-on set regenerates in one go; only do it once. Self-hosted
+  # add-ons are not part of it and must still run their own updateScript.
+  if is_generated_addon "$pkg"; then
     [ "$did_firefox_addons" = true ] && continue
     did_firefox_addons=true
   fi
