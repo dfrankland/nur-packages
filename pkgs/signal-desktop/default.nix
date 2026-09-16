@@ -11,7 +11,7 @@ else
   # https://formulae.brew.sh/api/cask/signal.json
   let
     app = "Signal.app";
-    version = "8.20.0";
+    version = "8.27.0";
   in
     stdenv.mkDerivation {
       pname = "signal-desktop";
@@ -19,7 +19,7 @@ else
 
       src = fetchzip {
         url = "https://updates.signal.org/desktop/signal-desktop-mac-arm64-${version}.zip";
-        sha256 = "sha256-T7og6DAfiWMlT3Ko5U86iuX36+5W+BSd8lZiLhM1WFU=";
+        sha256 = "sha256-CCTZ4TuFGEpbOCAxkcpQ22UfGHc8vyaIc+MSaFgVmCo=";
       };
 
       dontFixup = true; # Don't break code signing. Check with `codesign -dv ./result/Applications/Signal.app`

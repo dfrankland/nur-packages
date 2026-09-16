@@ -6,7 +6,7 @@
   writeScript,
 }: let
   app = "QMK Toolbox.app";
-  version = "0.3.3";
+  version = "0.3.4";
 in
   stdenv.mkDerivation rec {
     pname = "qmk_toolbox";
@@ -14,7 +14,7 @@ in
 
     src = fetchzip {
       url = "https://github.com/qmk/qmk_toolbox/releases/download/${version}/QMK.Toolbox.app.zip";
-      sha256 = "sha256-0wxNd531dmSlgN/v0+VvjvnV7RmHN5lL4bALVy97Gqw=";
+      sha256 = "sha256-fHmaHBnRuJklqCySry/HvEo4GUUbKF/AZyq6m/x3cSg=";
     };
 
     buildInputs = [undmg];

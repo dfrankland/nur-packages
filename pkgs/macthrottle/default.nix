@@ -6,7 +6,7 @@
 }: let
   app = "MacThrottle.app";
   asset = "MacThrottle-${version}.zip";
-  version = "1.8.2";
+  version = "1.9.2";
 in
   stdenv.mkDerivation {
     pname = "macthrottle";
@@ -14,7 +14,7 @@ in
 
     src = fetchzip {
       url = "https://github.com/angristan/MacThrottle/releases/download/v${version}/${asset}";
-      sha256 = "sha256-eiHZYo6bY51x6cn/ZkCFJnSaZUFNrt+DvVKgNTpWW1M=";
+      sha256 = "sha256-ZpjrDA4TCUlogT73d3F/UbC9sEyJNbqdUjUIAn046zo=";
       stripRoot = false;
     };
 

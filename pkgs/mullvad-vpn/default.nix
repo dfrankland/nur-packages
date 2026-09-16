@@ -11,14 +11,14 @@ if (!stdenv.isDarwin)
 then mullvad-vpn
 else let
   pname = "mullvad-vpn";
-  version = "2026.3";
+  version = "2026.5";
 in
   stdenv.mkDerivation {
     inherit pname version;
 
     src = fetchurl {
       url = "https://github.com/mullvad/mullvadvpn-app/releases/download/${version}/MullvadVPN-${version}.pkg";
-      sha256 = "sha256-Zi3GfkLqqRW1lMDmjT6Ekn9y94TVoHyahOmWyjWL9iw=";
+      sha256 = "sha256-fGjdk64BwbVs4pxIspOm7LKa1hdp7pBhmIf6cafdhns=";
     };
 
     nativeBuildInputs = [xar cpio];

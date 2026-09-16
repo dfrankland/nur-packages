@@ -6,10 +6,10 @@
 }: {
   "2fas-two-factor-authentication" = buildMozillaXpiAddon {
     pname = "2fas-two-factor-authentication";
-    version = "1.8.2";
+    version = "1.9.0";
     addonId = "admin@2fas.com";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4824064/2fas_two_factor_authentication-1.8.2.xpi";
-    sha256 = "4d00800f721896ded87b3a639434b8419573d5fd4b85003ad5edd2d8f14c180a";
+    url = "https://addons.mozilla.org/firefox/downloads/file/5029061/2fas_two_factor_authentication-1.9.0.xpi";
+    sha256 = "cc2469da18fb9f3dd6c99de019c8c476b3c19f87bbdf7267f2401034130ab930";
     meta = with lib; {
       homepage = "https://2fas.com/";
       description = "2FAS Auth Browser Extension is simple, private, and secured: one click, one tap, and your 2FA token is automatically entered!";
@@ -18,9 +18,11 @@
         "activeTab"
         "tabs"
         "storage"
+        "unlimitedStorage"
         "notifications"
         "contextMenus"
         "webNavigation"
+        "alarms"
         "https://*/*"
         "http://*/*"
       ];
@@ -57,10 +59,10 @@
   };
   "onepassword-password-manager" = buildMozillaXpiAddon {
     pname = "onepassword-password-manager";
-    version = "8.12.28.25";
+    version = "8.12.32.33";
     addonId = "{d634138d-c276-4fc8-924b-40a0ea21d284}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4899098/1password_x_password_manager-8.12.28.25.xpi";
-    sha256 = "fc369b5ee7958a57c519aa37e7ba540ebe08d58b4bc976fab1ba2e91bc01bc25";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4951729/1password_x_password_manager-8.12.32.33.xpi";
+    sha256 = "b952fb617027f78b5649ffdd88f58bc07da92d21dc73cc6bb6e28879e5e2e30b";
     meta = with lib; {
       homepage = "https://1password.com";
       description = "The best way to experience 1Password in your browser. Easily sign in to sites, generate passwords, and store secure information, including logins, credit cards, notes, and more.";
@@ -161,10 +163,10 @@
   };
   "refined-github" = buildMozillaXpiAddon {
     pname = "refined-github";
-    version = "26.7.12";
+    version = "26.9.12";
     addonId = "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4895101/refined_github-26.7.12.xpi";
-    sha256 = "d7601af3c1a6146fe18d0f5f71def6fd4aac4c4ff4d462500540a882855d6d78";
+    url = "https://addons.mozilla.org/firefox/downloads/file/5024350/refined_github-26.9.12.xpi";
+    sha256 = "eff601153ab28f19ac3bcda4b5d8f3f8c8f4eb47ac45dddaa3a49a67b734138d";
     meta = with lib; {
       homepage = "https://github.com/refined-github/refined-github";
       description = "Simplifies the GitHub interface and adds many useful features.";
@@ -246,24 +248,30 @@
   };
   "trunk-for-github" = buildMozillaXpiAddon {
     pname = "trunk-for-github";
-    version = "0.15.3";
+    version = "1.2.0";
     addonId = "trunk-github@trunk.io";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4913605/trunk_for_github-0.15.3.xpi";
-    sha256 = "ce0319945961d444d567c1d71321b8e3f94a24761809e2ed46d7a17e8edcf831";
+    url = "https://addons.mozilla.org/firefox/downloads/file/5029426/trunk_for_github-1.2.0.xpi";
+    sha256 = "55f431b87664c4c4a40ecb5ca764ad6270c01f29b2008129615b3fdf48c23337";
     meta = with lib; {
       homepage = "https://trunk.io";
       description = "Adds Trunk-focused functionality and UI improvements to GitHub.";
       license = licenses.mit;
-      mozPermissions = ["storage" "cookies" "https://github.com/*"];
+      mozPermissions = [
+        "storage"
+        "cookies"
+        "https://github.com/*"
+        "https://cursor.com/*"
+        "https://gitlab.com/*"
+      ];
       platforms = platforms.all;
     };
   };
   "ublock-origin" = buildMozillaXpiAddon {
     pname = "ublock-origin";
-    version = "1.72.2";
+    version = "1.75.0";
     addonId = "uBlock0@raymondhill.net";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4888680/ublock_origin-1.72.2.xpi";
-    sha256 = "40c315b0da7871868155ecfae7a50a58dfa0920aebd865e008214986f1b7c578";
+    url = "https://addons.mozilla.org/firefox/downloads/file/5034826/ublock_origin-1.75.0.xpi";
+    sha256 = "5b74415860456370644bd80f16125e865b0e6c356bb5dfcfb84069967eaa5287";
     meta = with lib; {
       homepage = "https://github.com/gorhill/uBlock#ublock-origin";
       description = "Finally, an efficient wide-spectrum content blocker. Easy on CPU and memory.";

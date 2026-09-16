@@ -13,13 +13,13 @@
 }: {
   "trunk-for-github-staging" = buildMozillaXpiAddon {
     pname = "trunk-for-github-staging";
-    version = "0.16.3";
+    version = "1.2.0";
     addonId = "trunk-for-github-staging@trunk.io";
     # The filename carries an AMO-assigned signing id, so it is not derivable
     # from the version — URL and hash both come from the updates.json pointer
     # that the updateScript below reads.
-    url = "https://trunk.io/releases/browser-extension/staging/0.16.3/4b09ce2df7354daa82c4-0.16.3.xpi";
-    sha256 = "e57b82784989bdf18f7c61aaacf3b749612532aa642a1369bb7ef446b0c63b69";
+    url = "https://trunk.io/releases/browser-extension/staging/1.2.0/4b09ce2df7354daa82c4-1.2.0.xpi";
+    sha256 = "87c924a03fa0dee509d2615b6014d74e51914d25a418fc12e62f7e6a12b4e77a";
 
     # Installs alongside the listed `trunk-for-github` rather than conflicting
     # with it: the staging build ships a different gecko id and suffixes its

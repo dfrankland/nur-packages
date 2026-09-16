@@ -8,7 +8,7 @@
 # https://formulae.brew.sh/api/cask/rippling.json
 let
   app = "Rippling.app";
-  version = "3.6.52";
+  version = "3.6.53";
 in
   stdenv.mkDerivation {
     pname = "rippling";
@@ -16,7 +16,7 @@ in
 
     src = fetchurl {
       url = "https://public-assets.ripplingcdn.com/global/hardware-public/device_release/electron-installer/${version}/macos/Rippling.dmg";
-      sha256 = "sha256-hioUam2VOCIkx+bRqGMXyMYdeNRAHFvA7oWZkY9EzQ0=";
+      sha256 = "sha256-wKtXaBFukCCovEZosyJHuJLzm+bmOX6B04MFOZJwdxY=";
     };
 
     sourceRoot = app;
