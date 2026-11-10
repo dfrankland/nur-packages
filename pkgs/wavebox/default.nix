@@ -71,8 +71,8 @@
   addDriverRunpath,
 }: let
   pname = "wavebox";
-  darwinVersion = "153.2.204.2";
-  linuxVersion = "153.2.204-2";
+  darwinVersion = "157.3.32.2";
+  linuxVersion = "157.3.32-2";
 
   opusWithCustomModes = libopus.override {withCustomModes = true;};
 
@@ -176,7 +176,7 @@ in
       src = fetchzip {
         name = "wavebox-${darwinVersion}.zip";
         url = "https://download.wavebox.app/stable/macarm64/Wavebox_${darwinVersion}.zip";
-        sha256 = "sha256-RkeATHINuvjtWzi/TjWb3EtShSngk6CpYz1KsUuUDd0=";
+        sha256 = "sha256-po1KJefiDDp2VbEmgWLipLAdetfTQeHEZFaGHRoc/wo=";
         stripRoot = false;
       };
 
@@ -203,7 +203,7 @@ in
 
       src = fetchurl {
         url = "https://download.wavebox.app/stable/linux/deb/amd64/wavebox_${linuxVersion}_amd64.deb";
-        sha256 = "sha256-5WPGqofKG1BtoWuUFd3gxR+F9eT0tZBiM1iziF+Benw=";
+        sha256 = "sha256-kFNGd6YilbW2+R0VCiuivICVZlSbLHYyybu62UHgrPE=";
       };
 
       nativeBuildInputs = [patchelf makeWrapper];

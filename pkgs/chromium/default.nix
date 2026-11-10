@@ -14,9 +14,9 @@ else
   # https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html?prefix=Mac_Arm/
   # and filter for `LAST_CHANGE` to find the version number of the latest release
   let
-    version = "1699013";
+    version = "1740699";
     arch = "Mac_Arm";
-    sha256 = "sha256-KZJPGD5uhDS/+iyp3JyOyQnN5WnVqVl7MNHxdr7RdE4=";
+    sha256 = "sha256-E+2sVqiVKeXcEIJj9B0KwbYnYluktTdS1vDJC4B4TZA=";
   in
     stdenv.mkDerivation {
       pname = "chromium";

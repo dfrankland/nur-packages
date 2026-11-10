@@ -8,7 +8,7 @@
 }:
 with lib; let
   # curl -sL 'https://trunk.io/releases/latest'
-  version = "1.25.0";
+  version = "1.29.0";
   platform =
     if (stdenv.isDarwin)
     then "darwin"
@@ -19,10 +19,10 @@ with lib; let
     else "x86_64";
   sha256 =
     if (platform == "darwin" && cpu == "arm64")
-    then "2cff4f1cc63916db290359a058b88167beeac07a496682d9307a1804b498f225"
+    then "a3e55ccc8a55998b9944de8eb41b7fc0133988cbe36eec1fa5a14d4e8efc60fd"
     else if (cpu == "x86_64")
-    then "3845ff76a70cebb10e61a267ff719ffdccfa3ef6d877d51870a2c62b79603ab9"
-    else "cc210d2185cf95bedbec06384be6ef342bdb7dcf3ff72dd08fe0e69859516887";
+    then "39b7bfdc8eda677e595b83172c5fc7bd2e7588f4c6926aa56ff3e26578e9b3e8"
+    else "f6a6678dbe392f2f11a27bd41a7fd6cf52b4b366c93b3ae0df16ca521ebffcf6";
 in
   stdenv.mkDerivation {
     pname = "trunk";

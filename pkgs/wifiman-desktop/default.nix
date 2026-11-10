@@ -9,14 +9,14 @@
 # https://formulae.brew.sh/api/cask/wifiman.json
 let
   pname = "wifiman-desktop";
-  version = "1.2.8";
+  version = "1.3.0";
   system-and-extension =
     if (stdenv.isDarwin)
     then "arm64.pkg"
     else "amd64.deb";
   sha256 =
     if (stdenv.isDarwin)
-    then "sha256-To9RqgISIieoyTupquagqnc4cBoKDiMSSHh8JjGewBE="
+    then "sha256-VEwG2cmptau/DVH3pCewldXUcIlw0/UQ1D1iC9/3p/w="
     else
       # TODO: make this work for linux
       if (stdenv.hostPlatform.isAarch64)

@@ -6,10 +6,10 @@
 }: {
   "2fas-two-factor-authentication" = buildMozillaXpiAddon {
     pname = "2fas-two-factor-authentication";
-    version = "1.9.0";
+    version = "1.9.3";
     addonId = "admin@2fas.com";
-    url = "https://addons.mozilla.org/firefox/downloads/file/5029061/2fas_two_factor_authentication-1.9.0.xpi";
-    sha256 = "cc2469da18fb9f3dd6c99de019c8c476b3c19f87bbdf7267f2401034130ab930";
+    url = "https://addons.mozilla.org/firefox/downloads/file/5155897/2fas_two_factor_authentication-1.9.3.xpi";
+    sha256 = "024c8ca86e6d2883257bf0d379c9d796018b55ab7838f5e2a44133bd85e7552f";
     meta = with lib; {
       homepage = "https://2fas.com/";
       description = "2FAS Auth Browser Extension is simple, private, and secured: one click, one tap, and your 2FA token is automatically entered!";
@@ -31,10 +31,10 @@
   };
   "multi-account-containers" = buildMozillaXpiAddon {
     pname = "multi-account-containers";
-    version = "8.3.8";
+    version = "8.4.0";
     addonId = "@testpilot-containers";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4867303/multi_account_containers-8.3.8.xpi";
-    sha256 = "306a294845363f15a7478e9620b43f91ea1761088727808e2327bfff16c14447";
+    url = "https://addons.mozilla.org/firefox/downloads/file/5168122/multi_account_containers-8.4.0.xpi";
+    sha256 = "10936d682e17bd2e8afa018bde94f927b50cf05973d6ef8ca3c54f807b2cf7ba";
     meta = with lib; {
       homepage = "https://github.com/mozilla/multi-account-containers/#readme";
       description = "Firefox Multi-Account Containers lets you keep parts of your online life separated into color-coded tabs. Cookies are separated by container, allowing you to use the web with multiple accounts and integrate Mozilla VPN for an extra layer of privacy.";
@@ -59,10 +59,10 @@
   };
   "onepassword-password-manager" = buildMozillaXpiAddon {
     pname = "onepassword-password-manager";
-    version = "8.12.32.33";
+    version = "8.12.44.33";
     addonId = "{d634138d-c276-4fc8-924b-40a0ea21d284}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4951729/1password_x_password_manager-8.12.32.33.xpi";
-    sha256 = "b952fb617027f78b5649ffdd88f58bc07da92d21dc73cc6bb6e28879e5e2e30b";
+    url = "https://addons.mozilla.org/firefox/downloads/file/5203941/1password_x_password_manager-8.12.44.33.xpi";
+    sha256 = "dd896610a3e6776582b76f180ea0d3180b03413a244314f9d3c6b08ec6c59819";
     meta = with lib; {
       homepage = "https://1password.com";
       description = "The best way to experience 1Password in your browser. Easily sign in to sites, generate passwords, and store secure information, including logins, credit cards, notes, and more.";
@@ -110,10 +110,6 @@
         "https://auth.kolide.com/*"
         "https://auth.kolide.ca/*"
         "https://auth.kolide.eu/*"
-        "https://www.director.ai/?*"
-        "https://www.director.ai/"
-        "https://www.director.ai/complete-1password-pairing?*"
-        "https://www.director.ai/complete-1password-pairing"
         "https://autofill.me/*"
       ];
       platforms = platforms.all;
@@ -121,10 +117,10 @@
   };
   "react-devtools" = buildMozillaXpiAddon {
     pname = "react-devtools";
-    version = "6.1.1";
+    version = "8.0.0";
     addonId = "@react-devtools";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4432990/react_devtools-6.1.1.xpi";
-    sha256 = "b2d69e220402bd6b8bc7d833948915b1d6dcabb453a1d50872a3db860fd92c46";
+    url = "https://addons.mozilla.org/firefox/downloads/file/5018049/react_devtools-8.0.0.xpi";
+    sha256 = "ad429f0b0db914a0505591f70160005d7c3e1a7865128c3bfa46392d28be34be";
     meta = with lib; {
       homepage = "https://github.com/facebook/react";
       description = "React Developer Tools is a tool that allows you to inspect a React tree, including the component hierarchy, props, state, and more. To get started, just open the Firefox devtools and switch to the \"⚛️ Components\" or \"⚛️ Profiler\" tab.";
@@ -142,10 +138,10 @@
   };
   "reduxdevtools" = buildMozillaXpiAddon {
     pname = "reduxdevtools";
-    version = "3.2.10";
+    version = "3.2.12";
     addonId = "extension@redux.devtools";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4467343/reduxdevtools-3.2.10.xpi";
-    sha256 = "ef2b10a2bc8b0d1a844d146e3eeaff407eaaa63cd0564db8eafd870c87a88956";
+    url = "https://addons.mozilla.org/firefox/downloads/file/5141168/reduxdevtools-3.2.12.xpi";
+    sha256 = "0ea0b00c23ea302ea6145a29e8c28fd5c94145dfbeab18016744fe597da1045a";
     meta = with lib; {
       homepage = "https://github.com/reduxjs/redux-devtools";
       description = "DevTools for Redux with actions history, undo and replay.";
@@ -163,10 +159,10 @@
   };
   "refined-github" = buildMozillaXpiAddon {
     pname = "refined-github";
-    version = "26.9.12";
+    version = "26.11.6";
     addonId = "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/5024350/refined_github-26.9.12.xpi";
-    sha256 = "eff601153ab28f19ac3bcda4b5d8f3f8c8f4eb47ac45dddaa3a49a67b734138d";
+    url = "https://addons.mozilla.org/firefox/downloads/file/5216077/refined_github-26.11.6.xpi";
+    sha256 = "877286e8034e868ba79b325195dbd7ddea9726dcb326568f1c656d057ae83fff";
     meta = with lib; {
       homepage = "https://github.com/refined-github/refined-github";
       description = "Simplifies the GitHub interface and adds many useful features.";
@@ -248,10 +244,10 @@
   };
   "trunk-for-github" = buildMozillaXpiAddon {
     pname = "trunk-for-github";
-    version = "1.2.0";
+    version = "1.12.0";
     addonId = "trunk-github@trunk.io";
-    url = "https://addons.mozilla.org/firefox/downloads/file/5029426/trunk_for_github-1.2.0.xpi";
-    sha256 = "55f431b87664c4c4a40ecb5ca764ad6270c01f29b2008129615b3fdf48c23337";
+    url = "https://addons.mozilla.org/firefox/downloads/file/5231112/trunk_for_github-1.12.0.xpi";
+    sha256 = "e8694d202f266916dbae77321afb4d5d1637a044850fcc6e29e64ebdad5ca632";
     meta = with lib; {
       homepage = "https://trunk.io";
       description = "Adds Trunk-focused functionality and UI improvements to GitHub.";
@@ -259,6 +255,8 @@
       mozPermissions = [
         "storage"
         "cookies"
+        "webRequest"
+        "webRequestBlocking"
         "https://github.com/*"
         "https://cursor.com/*"
         "https://gitlab.com/*"
@@ -268,10 +266,10 @@
   };
   "ublock-origin" = buildMozillaXpiAddon {
     pname = "ublock-origin";
-    version = "1.75.0";
+    version = "1.76.0";
     addonId = "uBlock0@raymondhill.net";
-    url = "https://addons.mozilla.org/firefox/downloads/file/5034826/ublock_origin-1.75.0.xpi";
-    sha256 = "5b74415860456370644bd80f16125e865b0e6c356bb5dfcfb84069967eaa5287";
+    url = "https://addons.mozilla.org/firefox/downloads/file/5225273/ublock_origin-1.76.0.xpi";
+    sha256 = "6f20ff6749193599548770539103069c20948dfcd3e61c3089a67da7bfc3be39";
     meta = with lib; {
       homepage = "https://github.com/gorhill/uBlock#ublock-origin";
       description = "Finally, an efficient wide-spectrum content blocker. Easy on CPU and memory.";
@@ -281,6 +279,7 @@
         "dns"
         "menus"
         "privacy"
+        "publicSuffix"
         "storage"
         "tabs"
         "unlimitedStorage"
