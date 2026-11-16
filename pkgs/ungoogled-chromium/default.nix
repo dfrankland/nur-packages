@@ -9,7 +9,7 @@
 if (!stdenv.isDarwin)
 then ungoogled-chromium
 else let
-  version = "156.0.8078.79-1.1";
+  version = "157.0.8103.78-1.1";
 in
   stdenv.mkDerivation {
     pname = "ungoogled-chromium";
@@ -17,7 +17,7 @@ in
 
     src = fetchurl {
       url = "https://github.com/ungoogled-software/ungoogled-chromium-macos/releases/download/${version}/ungoogled-chromium_${version}_arm64-macos.dmg";
-      sha256 = "sha256-T/OwhMSdI5GuzdOSTr0b10F/sd2I49pFiRvuc/jlwXM=";
+      sha256 = "sha256-vf4O5R5Ht/9JyUd4xtmtsIpibfvWCJVwu7tFVBDxpBo=";
     };
 
     buildInputs = [unpackdmg];

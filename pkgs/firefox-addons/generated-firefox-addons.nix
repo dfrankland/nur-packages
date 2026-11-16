@@ -244,10 +244,10 @@
   };
   "trunk-for-github" = buildMozillaXpiAddon {
     pname = "trunk-for-github";
-    version = "1.12.0";
+    version = "1.12.3";
     addonId = "trunk-github@trunk.io";
-    url = "https://addons.mozilla.org/firefox/downloads/file/5231112/trunk_for_github-1.12.0.xpi";
-    sha256 = "e8694d202f266916dbae77321afb4d5d1637a044850fcc6e29e64ebdad5ca632";
+    url = "https://addons.mozilla.org/firefox/downloads/file/5245760/trunk_for_github-1.12.3.xpi";
+    sha256 = "efa9ddd44e462d3f82c326abda6e2269ea9706841fc244fdfd73614ddc095f23";
     meta = with lib; {
       homepage = "https://trunk.io";
       description = "Adds Trunk-focused functionality and UI improvements to GitHub.";
@@ -266,10 +266,10 @@
   };
   "ublock-origin" = buildMozillaXpiAddon {
     pname = "ublock-origin";
-    version = "1.76.0";
+    version = "1.76.4";
     addonId = "uBlock0@raymondhill.net";
-    url = "https://addons.mozilla.org/firefox/downloads/file/5225273/ublock_origin-1.76.0.xpi";
-    sha256 = "6f20ff6749193599548770539103069c20948dfcd3e61c3089a67da7bfc3be39";
+    url = "https://addons.mozilla.org/firefox/downloads/file/5257481/ublock_origin-1.76.4.xpi";
+    sha256 = "66d0e3f21ce3b32b1bc0a9399b93cb2c9aa598ef18805d92118c76f66e266c1e";
     meta = with lib; {
       homepage = "https://github.com/gorhill/uBlock#ublock-origin";
       description = "Finally, an efficient wide-spectrum content blocker. Easy on CPU and memory.";

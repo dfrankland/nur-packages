@@ -12,7 +12,7 @@ else
   # https://pkgs.tailscale.com/stable/#macos
   let
     app = "Tailscale.app";
-    version = "1.104.5";
+    version = "1.104.7";
   in
     stdenv.mkDerivation rec {
       pname = "tailscale";
@@ -20,7 +20,7 @@ else
 
       src = fetchzip {
         url = "https://pkgs.tailscale.com/stable/Tailscale-${version}-macos.zip";
-        sha256 = "sha256-P6qfYJKIedf1ZhXxomkAlTcLkBRjRHbzdBKePCZ9bRM=";
+        sha256 = "sha256-60V/C28lF4eo/oqqtnDo5aLg8EcO4DdvuZts6rxRPrI=";
       };
 
       nativeBuildInputs = [makeWrapper];
