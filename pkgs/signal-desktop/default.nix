@@ -5,7 +5,7 @@
   signal-desktop,
   writeScript,
 }:
-if (!stdenv.isDarwin)
+if (!stdenv.hostPlatform.isDarwin)
 then signal-desktop
 else
   # https://formulae.brew.sh/api/cask/signal.json

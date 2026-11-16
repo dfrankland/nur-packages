@@ -5,7 +5,7 @@
   chromium,
   writeScript,
 }:
-if (!stdenv.isDarwin)
+if (!stdenv.hostPlatform.isDarwin)
 then chromium
 else
   # Go to either

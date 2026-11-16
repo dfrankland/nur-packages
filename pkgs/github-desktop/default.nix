@@ -7,7 +7,7 @@
   makeWrapper,
   writeScript,
 }:
-if (!stdenv.isDarwin)
+if (!stdenv.hostPlatform.isDarwin)
 then github-desktop
 else
   # https://formulae.brew.sh/api/cask/github.json

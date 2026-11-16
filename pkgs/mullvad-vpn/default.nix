@@ -7,7 +7,7 @@
   cpio,
   writeScript,
 }:
-if (!stdenv.isDarwin)
+if (!stdenv.hostPlatform.isDarwin)
 then mullvad-vpn
 else let
   pname = "mullvad-vpn";

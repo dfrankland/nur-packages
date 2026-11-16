@@ -11,11 +11,11 @@
   version = "4.99.0";
   rev = "245822";
   platform =
-    if (stdenv.isDarwin)
+    if (stdenv.hostPlatform.isDarwin)
     then "mac"
     else "linux";
   cpu =
-    if (stdenv.isDarwin)
+    if (stdenv.hostPlatform.isDarwin)
     then "arm64"
     else "amd64";
   sha256 =
@@ -23,7 +23,7 @@
     then "0ede7f9917b55c396a17b03c069cadf457a7d21904bc264c6d398fe132da7fb9"
     else "e0f82d16eda165fe2115b40906c91a2f9100aff509daefcf3ce2e17e89703582";
   file =
-    if (stdenv.isDarwin)
+    if (stdenv.hostPlatform.isDarwin)
     then "Docker.dmg"
     else "docker-desktop-amd64.deb";
   app = "Docker.app";
@@ -38,12 +38,12 @@ in
     };
 
     nativeBuildInputs =
-      if (stdenv.isDarwin)
+      if (stdenv.hostPlatform.isDarwin)
       then [unpackdmg makeWrapper]
       else [dpkg];
     dontFixup = true; # Don't break code signing. Check with `codesign -dv ./result/Applications/Docker.app`
     installPhase =
-      if (stdenv.isDarwin)
+      if (stdenv.hostPlatform.isDarwin)
       then ''
         mkdir -p "$out/Applications"
         cp -R '${app}' "$out/Applications/"

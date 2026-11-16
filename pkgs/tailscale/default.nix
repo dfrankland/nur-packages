@@ -6,7 +6,7 @@
   makeWrapper,
   writeScript,
 }:
-if (!stdenv.isDarwin)
+if (!stdenv.hostPlatform.isDarwin)
 then tailscale
 else
   # https://pkgs.tailscale.com/stable/#macos

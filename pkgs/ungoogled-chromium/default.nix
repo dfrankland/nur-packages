@@ -6,7 +6,7 @@
   ungoogled-chromium,
   writeScript,
 }:
-if (!stdenv.isDarwin)
+if (!stdenv.hostPlatform.isDarwin)
 then ungoogled-chromium
 else let
   version = "157.0.8103.78-1.1";

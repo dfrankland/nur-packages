@@ -10,19 +10,19 @@
 let
   version = "1.10.0";
   urlArch =
-    if (stdenv.isDarwin)
+    if (stdenv.hostPlatform.isDarwin)
     then "macos"
     else "linux";
   urlFile =
-    if (stdenv.isDarwin)
+    if (stdenv.hostPlatform.isDarwin)
     then "Playback.dmg"
-    else if (stdenv.isAarch64)
+    else if (stdenv.hostPlatform.isAarch64)
     then "Playback.arm64.AppImage"
     else "Playback.AppImage";
   sha256 =
-    if (stdenv.isDarwin)
+    if (stdenv.hostPlatform.isDarwin)
     then "sha256-+iCAREQqY0GgTBc1TK8BiGchfObLNRgMXsXw8La0tl4="
-    else if (stdenv.isAarch64)
+    else if (stdenv.hostPlatform.isAarch64)
     then lib.fakeSha256
     else lib.fakeSha256;
   pname = "epilogue-playback";
@@ -47,7 +47,7 @@ let
     nix-update --flake epilogue-playback --version "$version"
   '';
 in
-  if (stdenv.isDarwin)
+  if (stdenv.hostPlatform.isDarwin)
   then
     stdenv.mkDerivation
     {

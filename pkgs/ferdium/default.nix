@@ -5,7 +5,7 @@
   ferdium,
   writeScript,
 }:
-if (!stdenv.isDarwin)
+if (!stdenv.hostPlatform.isDarwin)
 then ferdium
 else let
   app = "Ferdium.app";

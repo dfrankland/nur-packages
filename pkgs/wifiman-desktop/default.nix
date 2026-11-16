@@ -11,11 +11,11 @@ let
   pname = "wifiman-desktop";
   version = "1.3.0";
   system-and-extension =
-    if (stdenv.isDarwin)
+    if (stdenv.hostPlatform.isDarwin)
     then "arm64.pkg"
     else "amd64.deb";
   sha256 =
-    if (stdenv.isDarwin)
+    if (stdenv.hostPlatform.isDarwin)
     then "sha256-VEwG2cmptau/DVH3pCewldXUcIlw0/UQ1D1iC9/3p/w="
     else
       # TODO: make this work for linux

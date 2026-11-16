@@ -10,11 +10,11 @@ with lib; let
   # curl -sL 'https://trunk.io/releases/latest'
   version = "1.29.0";
   platform =
-    if (stdenv.isDarwin)
+    if (stdenv.hostPlatform.isDarwin)
     then "darwin"
     else "linux";
   cpu =
-    if (stdenv.isDarwin || stdenv.hostPlatform.isAarch64)
+    if (stdenv.hostPlatform.isDarwin || stdenv.hostPlatform.isAarch64)
     then "arm64"
     else "x86_64";
   sha256 =
@@ -36,7 +36,7 @@ in
     # case that happens when the archive doesn't have a subdirectory.
     setSourceRoot = "sourceRoot=`pwd`";
 
-    nativeBuildInputs = lib.optionals stdenv.isLinux [autoPatchelfHook makeWrapper];
+    nativeBuildInputs = lib.optionals stdenv.hostPlatform.isLinux [autoPatchelfHook makeWrapper];
 
     installPhase = ''
       mkdir -p $out/bin

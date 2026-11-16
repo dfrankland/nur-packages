@@ -165,7 +165,7 @@
       "$file"
   '';
 in
-  if stdenv.isDarwin
+  if stdenv.hostPlatform.isDarwin
   then let
     app = "Wavebox.app";
   in

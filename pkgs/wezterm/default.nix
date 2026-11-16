@@ -6,7 +6,7 @@
   wezterm,
   writeScript,
 }:
-if (!stdenv.isDarwin)
+if (!stdenv.hostPlatform.isDarwin)
 then wezterm
 else let
   version = "20240203-110809-5046fc22";
